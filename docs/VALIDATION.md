@@ -22,6 +22,10 @@ The checks exercise:
 These are offline behavior/integration checks, not real-model experiments. No
 GAIA2 task dataset, hidden state, judge, or paid model endpoint is used. There is
 no success-rate, token-saving, or SOTA claim. Native simulated-time waits, live
-user simulation, full host recovery, Linux/container execution, and complete
+user simulation, full host recovery, container execution, and complete
 benchmark campaigns require separate validation. The GitHub workflow defines
 Python 3.12/3.13 checks; its existence alone is not evidence that they have run.
+
+GitHub Actions also passed the native checks on Linux with Python 3.12 and 3.13
+for the initial public commit: [run 41615030336](https://github.com/zhangdw156/better-are-react-agent/actions/runs/41615030336).
+This validates the scripted checks on those runners, not a live benchmark.

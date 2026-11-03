@@ -131,4 +131,3 @@ class PublicContinuation:
         self.previous_action = {key: deepcopy(step[key]) for key in ("action", "action_input")}
         return "Thought: Execute the publicly supported planned action.\nAction:\n" + json.dumps(
             self.previous_action), record
-

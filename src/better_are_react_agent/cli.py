@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import os
 
 from .catalog import describe, identity, list_agents
 
@@ -20,6 +21,7 @@ def main():
     elif args.command == "describe":
         value = {**describe(args.agent), "identity": identity(args.agent)}
     else:
+        os.environ.setdefault("LITELLM_LOCAL_MODEL_COST_MAP", "True")
         from .smoke import run
         names = [row["id"] for row in list_agents()] if args.agent == "all" else [args.agent]
         value = [run(name) for name in names]

@@ -4,5 +4,5 @@
   "source_path": "harnessmm/harness/gaia2_jev.py",
   "original_sha256": "d2607890a44005c4efa43022ac05f037089457c895a4e67a8fb984e7e1549624",
   "extraction": "PLAN_INSTRUCTION, action_object, fingerprint, PublicContinuation; original bodies retained",
-  "published_sha256": "6486042b04f7aa188b42fd6ffb84a61c5870461c81e30603f696ecdc00785311"
+  "published_sha256": "4ba3b78009219860e54258fe83e6d7d01adf213acf4bb7d8b32d15b830af5a1e"
 }
