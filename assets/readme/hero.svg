@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="340" viewBox="0 0 1200 340" role="img" aria-labelledby="title desc">
   <title id="title">Better ARE ReAct Agent</title>
-  <desc id="desc">Research implementations for recursive self-improvement on GAIA2. Four papers, five enhanced variants, and one native ARE ReAct baseline.</desc>
+  <desc id="desc">Research implementations for recursive self-improvement on GAIA2. Four papers and five independent native ARE ReAct source trees.</desc>
   <defs>
     <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
       <stop stop-color="#102f2a"/>
@@ -25,7 +25,7 @@
     <text x="60" y="150" font-size="73" font-weight="750" letter-spacing="-2.7"><tspan fill="#f3faf7">Better ARE </tspan><tspan fill="#edc27a">ReAct Agent</tspan></text>
     <text x="64" y="200" fill="#bfd3cc" font-size="22">From research papers to agents you can study and evolve.</text>
     <line x1="64" y1="239" x2="114" y2="239" stroke="#60c6a9" stroke-width="2"/>
-    <text x="64" y="277" fill="#a2c6b8" font-size="14" font-weight="600" letter-spacing="1.7">4 PAPERS <tspan fill="#568b7d"> / </tspan> 5 VARIANTS <tspan fill="#568b7d"> / </tspan> 1 NATIVE BASELINE</text>
+    <text x="64" y="277" fill="#a2c6b8" font-size="14" font-weight="600" letter-spacing="1.7">4 PAPERS <tspan fill="#568b7d"> / </tspan> 5 SOURCE TREES <tspan fill="#568b7d"> / </tspan> NATIVE ARE</text>
 
     <g transform="translate(943 91)" fill="none" stroke-linecap="round" stroke-linejoin="round">
       <path d="M85 148 V101 M85 103 C85 74 21 91 21 53 M85 103 V36 M85 103 C85 74 149 91 149 53" stroke="url(#evolution)" stroke-width="2.5"/>
@@ -40,7 +40,7 @@
       <circle cx="149" cy="53" r="4" fill="#102f2a" stroke="#d7c68b" stroke-width="2"/>
       <rect x="49" y="140" width="72" height="40" rx="12" fill="#173e35" stroke="#60c6a9" stroke-width="1.6"/>
       <path d="M68 158 A13 13 0 0 1 92 153 M92 153 L91 146 M92 153 L85 153 M102 163 A13 13 0 0 1 78 168 M78 168 L79 175 M78 168 L85 168" stroke="#b7dacb" stroke-width="1.6"/>
-      <text x="85" y="211" text-anchor="middle" fill="#8eb9a7" font-size="12" font-weight="600" letter-spacing="1.8" stroke="none">ONE NATIVE LOOP</text>
+      <text x="85" y="211" text-anchor="middle" fill="#8eb9a7" font-size="12" font-weight="600" letter-spacing="1.8" stroke="none">NATIVE ARE API</text>
     </g>
   </g>
 </svg>

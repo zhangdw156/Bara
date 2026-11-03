@@ -1,0 +1,19 @@
+{
+  "distribution": "meta-agents-research-environments",
+  "version": "1.2.0",
+  "repository": "https://github.com/facebookresearch/meta-agents-research-environments",
+  "files": {
+    "cli.py": {
+      "upstream_path": "are/simulation/benchmark/cli.py",
+      "upstream_sha256": "8e794eff3b812a1562a32acdb370e6fe0c9804f5fda05643e265377eafc259fd"
+    },
+    "scenario_executor.py": {
+      "upstream_path": "are/simulation/benchmark/scenario_executor.py",
+      "upstream_sha256": "aed31b110ae9b09ac67242265a0d745b6e722fec21b3d4979de26bb913373ff7"
+    },
+    "gaia2_submission.py": {
+      "upstream_path": "are/simulation/benchmark/gaia2_submission.py",
+      "upstream_sha256": "5be1d8ab73e309e8f4cb3234d2e2950dc90349fd396ff32cc00bf12b2aac9f5c"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "method": "harnessmm",
+  "title": "HarnessMM",
+  "paper": "https://arxiv.org/abs/2610.32813",
+  "fidelity": "public-component-port",
+  "upstream": {
+    "repository": "https://github.com/facebookresearch/meta-agents-research-environments",
+    "revision": "a9fd2edccb4bc7e22fbf45c8482a5fef30a2a5a4"
+  },
+  "native_recovery": {
+    "repository": "https://github.com/zhangdw156/meta-agents-research-environments",
+    "revision": "ef20fe0c57a8a45ce754b0051a5b2c29a13c158d",
+    "files": [
+      "are/simulation/agents/default_agent/base_agent.py",
+      "are/simulation/agents/default_agent/termination_methods/are_simulation.py"
+    ]
+  },
+  "published_score_reproduced": false,
+  "example_change": "Use loopback for the upstream demo MCP server address."
+}

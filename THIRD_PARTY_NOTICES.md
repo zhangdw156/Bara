@@ -1,22 +1,19 @@
 # Third-party notices
 
-Original adapter, policy, test, and documentation code in this repository is under
-the MIT license in LICENSE.
+Original research modifications, CLI code, tests and collection documentation are
+MIT-licensed under the root LICENSE.
 
-The extracted HarnessMM controller is copyright its original contributors and is
-licensed under Apache License 2.0. Source: Yuhua Jiang and contributors,
-https://github.com/YuhuaJiang2002/HarnessMM, commit
-e77dfb5b768831be80c7a97855450a65404d01cb,
-harnessmm/harness/gaia2_jev.py. Modification: extract the standalone controller and
-its helpers; omit the original provider/research-runner integration class. The
-original function/class bodies remain unchanged. The full license and extraction
-hashes accompany the code under src/better_are_react_agent/vendor/.
+Each agent directory includes Meta Platforms, Inc. and affiliates' complete ARE
+Python package under its own original MIT LICENSE. Source provenance and common
+native runtime changes are recorded in each SOURCE.json. Native source headers
+are retained. The demo MCP address is changed to loopback.
 
-ARE is an external MIT-licensed dependency from Meta Platforms, Inc. and affiliates:
-https://github.com/facebookresearch/meta-agents-research-environments.
-Its native implementation is imported, not relicensed or copied into this project.
+HarnessMM's extracted continuation controller is Apache-2.0, with its license,
+source hashes and notices under harnessmm/are/simulation/agents/default_agent/vendor/.
+The original controller bodies are retained; the original research runner is omitted.
 
-AutoSaddler, ActiveSaddler, ParetoSaddler, and HarnessMM names identify the cited
-research sources. Appendix-derived policies and guards are independently written
-partial reconstructions. They do not imply author endorsement or transfer the
-papers' benchmark results to these implementations. Full papers are not bundled.
+The shared evaluation CLI adapts three ARE 1.2.0 benchmark modules. Their original
+MIT license, source hashes and modifications are recorded in src/bara/benchmark/.
+
+Research names identify cited papers and do not imply endorsement or reproduction
+of the authors' complete final artifacts or reported benchmark scores.

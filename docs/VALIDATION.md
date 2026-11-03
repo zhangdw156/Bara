@@ -1,31 +1,31 @@
 # Validation scope
 
-Local validation on 2026-11-03 uses an isolated Python 3.12 environment and the
-published ARE 1.2.0 distribution. It does not change other environments.
+Checks are run locally; this repository has no automatic GitHub Actions workflow.
 
-The checks exercise:
+The local suites exercise the standard native factory from each independent source
+directory, real ARE steps and tools with scripted responses, native builder use,
+format retries, and restoration of a pending request without repeating a committed
+tool. Method-specific checks cover AutoSaddler tool adaptations, ActiveSaddler
+repairs, ParetoSaddler terminal conversion and HarnessMM continuation reuse.
 
-- Every installed factory returning the actual native `BaseAgent`, retaining
-  `BaseAgent.step`, and executing native read/reply tools with scripted responses.
-- An unchanged baseline prompt/config/engine and independent variant instances.
-- A HarnessMM continuation executing a second native action without another model
-  callback, then invalidation when the user changes the task.
-- JSON round trips of a queued continuation and a pending provider-call state,
-  including exact reuse of the prepared request and source-identity rejection.
-- Signature repair reaching the real native tool executor, calendar ambiguity
-  prevention from successful public deletion receipts, and non-intervention on
-  failed deletions, missing tools, or a later user clarification.
-- Conservative terminal-text conversion and preservation of progress/refusal text.
-- Entry-point discovery and content identities, CLI smoke execution, source lint,
-  and building an installable wheel/source distribution.
+The collection CLI is checked separately from agent implementations. Synthetic
+JSON and JSONL scenarios exercise the custom evaluation CLI through a loopback
+model fixture, native scenario execution and trace/report export. A dispatch check
+covers the full protocol's phase configuration; it is not a full GAIA2 campaign.
 
-These are offline behavior/integration checks, not real-model experiments. No
-GAIA2 task dataset, hidden state, judge, or paid model endpoint is used. There is
-no success-rate, token-saving, or SOTA claim. Native simulated-time waits, live
-user simulation, full host recovery, container execution, and complete
-benchmark campaigns require separate validation. The GitHub workflow defines
-Python 3.12/3.13 checks; its existence alone is not evidence that they have run.
+No live model inference, full downloaded GAIA2 campaign, benchmark score, or SOTA
+result is claimed. Native factory compatibility does not assert that every external
+evaluator accepts every source deployment policy or implements exact recovery.
 
-GitHub Actions also passed the native checks on Linux with Python 3.12 and 3.13
-for the initial public commit: [run 41615030336](https://github.com/zhangdw156/better-are-react-agent/actions/runs/41615030336).
-This validates the scripted checks on those runners, not a live benchmark.
+## Checked on 2026-11-03
+
+The complete `uv run bara test` command passed 88 checks on Python 3.12: the CLI
+suite plus the five independent source and evaluation suites. Every source also
+passed native smoke and package builds. Each built wheel was checked for its local
+native factory and research files; the source archives include project manifests
+and lockfiles. The public HarnessMM controller's recorded content hash is preserved.
+
+A separate copy of the HarnessMM directory, outside the collection and without
+its package on the import path, passed `uv sync`, native smoke and all nine local
+source tests on Python 3.13. This checks independent use of that source directory;
+it is not a Python 3.13 result for every full evaluation suite.

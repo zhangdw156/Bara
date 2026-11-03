@@ -2,9 +2,9 @@
 
 <img src="assets/readme/hero.svg" width="100%" alt="Better ARE ReAct Agent · RSI research on GAIA2">
 
-<h3>面向 GAIA2 的 RSI 研究，从原生 ARE ReAct 出发。</h3>
+<h3>一个目录，一份进化后的 ARE ReAct 源码。</h3>
 
-<p>读论文、跑实现、做对比，继续改进你的 agent。</p>
+<p>读源码，跑评测，继续你的 RSI 研究。</p>
 
 <p>
 <a href="https://github.com/facebookresearch/meta-agents-research-environments"><img src="https://img.shields.io/badge/Native-ARE_1.2.0-2d6b59?style=for-the-badge&amp;labelColor=193b32" alt="Native ARE 1.2.0"></a>
@@ -12,161 +12,111 @@
 <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-b37d29?style=for-the-badge&amp;labelColor=684c23" alt="MIT license; upstream component notices below"></a>
 </p>
 
-<p>
-<a href="#collection"><b>实现合集</b></a>
-&nbsp; · &nbsp;
-<a href="#quick-start"><b>快速开始</b></a>
-&nbsp; · &nbsp;
-<a href="#papers"><b>论文与来源</b></a>
-&nbsp; · &nbsp;
-<a href="README.md"><b>English</b></a>
-</p>
+<p><a href="#collection"><b>源码合集</b></a> &nbsp; · &nbsp; <a href="#quick-start"><b>快速开始</b></a> &nbsp; · &nbsp; <a href="#papers"><b>论文</b></a> &nbsp; · &nbsp; <a href="README.md"><b>English</b></a></p>
 
 </div>
 
-**Better ARE ReAct Agent** 根据前沿论文，收集 RSI 后 ARE ReAct agent 的可运行实现，
-希望帮助在 **GAIA2** 上研究递归自改进的朋友开展对比评测、消融实验和进一步的 harness 演化。
+**Better ARE ReAct Agent（bara）** 根据前沿 RSI 论文的公开代码与附录，整理了五份
+独立的 ARE ReAct 实现。**每个 agent 子目录就是一份可以单独安装、修改和使用的 ARE 源码。**
 
 > [!NOTE]
-> **非保真实现，作为研究起点。** 这些版本不代表作者完整的最终 agent，也不直接继承论文成绩。[查看实现范围与差异 →](docs/SOURCES.md)
+> **不保证保真。** 这是面向 GAIA2 / RSI 研究的实用源码合集，不声称拿到了作者完整的最终进化产物，也不继承论文成绩。
 
 <a id="collection"></a>
 
-## 🧩 实现合集
-
-四篇论文、五个增强版本，以及一个保持原样的原生基线。
+## 🧩 源码合集
 
 <table>
 <tr>
-<td width="50%" valign="top">
-<h3>🛠️ AutoSaddler</h3>
-<p><sub><b>提示与任务策略</b></sub></p>
-<p>通信、消歧与子任务顺序。从提示规则入手，研究 agent 如何遵循任务约束。</p>
-<p><a href="https://arxiv.org/abs/2608.23041"><b>论文 ↗</b></a> &nbsp; · &nbsp; <a href="docs/SOURCES.md#autosaddler">实现说明 →</a></p>
-</td>
-<td width="50%" valign="top">
-<h3>🧭 ActiveSaddler</h3>
-<p><sub><b>执行前检查</b></sub></p>
-<p>根据案例重建邮件签名与日历歧义检查，在原生工具执行前修正特定错误。</p>
-<p><a href="https://arxiv.org/abs/2610.00906"><b>论文 ↗</b></a> &nbsp; · &nbsp; <a href="docs/SOURCES.md#activesaddler">实现说明 →</a></p>
-</td>
+<td width="50%" valign="top"><h3>🛠️ AutoSaddler</h3><p><sub><b>任务策略与工具算法</b></sub></p><p>沟通、消歧、任务顺序，以及公开检索和批量工具算法的改写。</p><p><a href="autosaddler/"><b>查看源码 →</b></a> · <a href="https://arxiv.org/abs/2608.23041">论文 ↗</a></p></td>
+<td width="50%" valign="top"><h3>🧭 ActiveSaddler</h3><p><sub><b>动作修正</b></sub></p><p>在原生模型调用步骤中修正邮件签名与日历替换歧义。</p><p><a href="activesaddler/"><b>查看源码 →</b></a> · <a href="https://arxiv.org/abs/2610.00906">论文 ↗</a></p></td>
 </tr>
 <tr>
-<td width="50%" valign="top">
-<h3>⚖️ ParetoSaddler</h3>
-<p><sub><b>质量与成本</b></sub></p>
-<p>I-23、I-22 两个 agent 侧版本，便于比较任务策略与面向效率的行为调整。</p>
-<p><a href="https://arxiv.org/abs/2611.02079"><b>论文 ↗</b></a> &nbsp; · &nbsp; <a href="docs/SOURCES.md#paretosaddler">实现说明 →</a></p>
-</td>
-<td width="50%" valign="top">
-<h3>🔁 HarnessMM</h3>
-<p><sub><b>决策复用</b></sub></p>
-<p>移植公开的延续执行组件，在工具反馈满足条件时复用已经确定的后续动作。</p>
-<p><a href="https://arxiv.org/abs/2610.32813"><b>论文 ↗</b></a> &nbsp; · &nbsp; <a href="docs/SOURCES.md#harnessmm">实现说明 →</a></p>
-</td>
+<td width="50%" valign="top"><h3>⚖️ ParetoSaddler</h3><p><sub><b>质量与成本</b></sub></p><p>来自不同搜索过程的两份独立源码，包含任务策略及最终回复处理。</p><p><a href="paretosaddler-i23/"><b>I-23 源码 →</b></a> · <a href="paretosaddler-i22/"><b>I-22 源码 →</b></a> · <a href="https://arxiv.org/abs/2611.02079">论文 ↗</a></p></td>
+<td width="50%" valign="top"><h3>🔁 HarnessMM</h3><p><sub><b>复用已决定的动作</b></sub></p><p>当工具反馈满足计划中的条件时，复用后续动作，减少模型调用。</p><p><a href="harnessmm/"><b>查看源码 →</b></a> · <a href="https://arxiv.org/abs/2610.32813">论文 ↗</a></p></td>
 </tr>
 </table>
 
-<details>
-<summary><b>查看全部六个 agent ID</b></summary>
+```text
+better-are-react-agent/
+├── autosaddler/
+├── activesaddler/
+├── paretosaddler-i23/
+├── paretosaddler-i22/
+├── harnessmm/
+└── src/bara/                 # 命令行与评测工具
+```
 
-| Agent ID | 实现内容 |
-| --- | --- |
-| `baseline` | 原生 ARE ReAct 对照组 |
-| `autosaddler-appendix` | AutoSaddler 的 agent 侧提示策略 |
-| `activesaddler-appendix` | ActiveSaddler 案例策略及执行前检查 |
-| `paretosaddler-i23-appendix` | ParetoSaddler I-23 策略 |
-| `paretosaddler-i22-appendix` | ParetoSaddler I-22 策略及最终回复转换 |
-| `harnessmm-public-continuation` | HarnessMM 公开的确定性延续执行组件 |
-
-使用 `baseline` 作为原生对照。各版本使用相同的场景工具集，不包含论文对环境应用工具的扩展。
-
-</details>
+每份目录都有自己的 `are/`、`pyproject.toml`、`uv.lock`、说明、来源记录和测试。
+agent 改动在各自的 `are/simulation/agents/default_agent/` 中；`bara` 只负责命令行与评测。
+单个 agent 目录可以独立复制、安装，运行时不依赖合集或其他 agent 目录。
+[供已有评测程序使用 →](docs/USAGE.md)
 
 <a id="quick-start"></a>
 
 ## 🚀 快速开始
 
-在仓库目录下安装项目并运行离线检查。`uv sync` 会自动创建 `.venv/`，
-并安装项目及开发工具：
+在合集根目录执行：
 
 ```sh
 uv sync
-uv run better-are-react-agent smoke
+uv run bara list
+uv run bara smoke autosaddler
 ```
-检查使用预设回复，实际执行 ARE 原生步骤和工具。无需 API 密钥或下载 benchmark，
-也不代表真实模型的 GAIA2 成绩。
 
-## 🔌 同一接口，切换不同版本
+离线检查用预设模型回复执行真实 ARE 工具，无需 API 密钥或数据下载。
+Bara 会自动准备所选源码目录自己的 `.venv`。
 
-创建原生 agent 时选择实现：
+| 命令 | 用途 |
+| --- | --- |
+| `uv run bara benchmark autosaddler --help` | 普通数据集评测参数 |
+| `uv run bara gaia2 harnessmm --help` | 完整 GAIA2 评测流程参数 |
+| `uv run bara judge autosaddler --help` | 离线评分参数 |
+| `uv run bara smoke` | 检查全部源码的原生执行 |
+| `uv run bara test` | 运行本地测试 |
+| `uv run bara build` | 分别打包五份 ARE 源码 |
+
+[数据目录、模型设置和结果文件 →](docs/EVALUATION.md)
+
+## 🔌 保持原生 ARE 接口
+
+先选择源码目录，再使用原来的导入和调用方式：
 
 ```python
-from better_are_react_agent import create_agent
+from are.simulation.agents.default_agent.agent_factory import are_simulation_react_json_agent
 
-agent = create_agent(
-    llm_engine,
-    base_agent_config,
-    variant="harnessmm-public-continuation",
-)
+agent = are_simulation_react_json_agent(llm_engine, base_agent_config)
 agent.tools = scenario_tools
 ```
-所有版本都返回 ARE 的 **`BaseAgent`**，保留原生推理循环和 JSON 工具执行器。
-模型接口、场景工具、通知、时钟和评分由评测程序提供。
 
-<details>
-<summary><b>原生 factory 接口与入口发现</b></summary>
-
-具名 factory 与 `are_simulation_react_json_agent` 使用相同的两个参数：
-
-```python
-from better_are_react_agent.factories import autosaddler_appendix
-
-agent = autosaddler_appendix(llm_engine, base_agent_config)
-```
-
-各版本注册在 Python 的 `are.react_agents` entry-point group 中。安装本包不会自动
-修改其他程序的 agent 选择。入口发现、内容标识和恢复状态见[接入约定](docs/INTEGRATION.md)。
-
-</details>
+每份源码返回自己的原生 `BaseAgent`。不同源码使用独立进程和环境。
+已有评测程序继续调用原生 ARE 接口；Bara 的定制 GAIA CLI 也使用所选源码中的
+原生 builder、工具、user simulator 和 judge。
 
 <a id="papers"></a>
 
 ## 📚 论文与来源
 
-合集参考以下论文。在研究中使用对应思想或实现时，请引用原始工作。
+- **[AutoSaddler](https://arxiv.org/abs/2608.23041)** — Automatic Harness Optimization with Durable Updates from Agent Execution Traces.
+- **[ActiveSaddler](https://arxiv.org/abs/2610.00906)** — Automated Curriculum Learning for Agent Harness Optimization.
+- **[ParetoSaddler](https://arxiv.org/abs/2611.02079)** — Pareto-Guided Optimization of Agent Harnesses for Quality and Cost.
+- **[HarnessMM](https://arxiv.org/abs/2610.32813)** — Recursive Self-Improvement for Harness Token Efficiency.
 
-- **[AutoSaddler](https://arxiv.org/abs/2608.23041)** — Automatic Harness Optimization with Durable Updates from Agent Execution Traces. [arXiv:2608.23041](https://arxiv.org/abs/2608.23041)
-- **[ActiveSaddler](https://arxiv.org/abs/2610.00906)** — Automated Curriculum Learning for Agent Harness Optimization. [arXiv:2610.00906](https://arxiv.org/abs/2610.00906)
-- **[ParetoSaddler](https://arxiv.org/abs/2611.02079)** — Pareto-Guided Optimization of Agent Harnesses for Quality and Cost. [arXiv:2611.02079](https://arxiv.org/abs/2611.02079)
-- **[HarnessMM](https://arxiv.org/abs/2610.32813)** — Recursive Self-Improvement for Harness Token Efficiency. [arXiv:2610.32813](https://arxiv.org/abs/2610.32813)
-
-原始仓库、附录位置、已实现内容与缺失部分，均列在[来源说明](docs/SOURCES.md)中。
-
-## ✅ 验证与开发
-
-<a href="https://github.com/zhangdw156/better-are-react-agent/actions/workflows/test.yml"><img src="https://github.com/zhangdw156/better-are-react-agent/actions/workflows/test.yml/badge.svg" alt="原生 agent 检查"></a>
-
-已检查原生工具执行、不同版本的状态隔离、延续动作复用、新通知使旧计划失效，以及控制器
-状态恢复。CI 覆盖 **Python 3.12、3.13**，目前未报告真实模型 benchmark 成绩。
-[查看验证范围 →](docs/VALIDATION.md)
+每份目录的 `SOURCE.json` 记录来源，`CHANGES.md` 说明已实现内容与差异。
+[完整来源说明 →](docs/SOURCES.md)
 
 <details>
-<summary><b>运行开发检查</b></summary>
+<summary><b>本地验证与贡献</b></summary>
 
-```sh
-uv run pytest
-uv run ruff check src tests
-uv build
-```
+测试覆盖原生工具执行、待执行模型请求恢复、各方法的特定行为，以及合成数据集评测。
+没有进行完整 GAIA2 或真实模型实验。检查在本地运行，仓库不配置自动工作流。
+[验证范围 →](docs/VALIDATION.md)
 
-添加新版本时，请记录论文来源、实现选择和差异，并区分公开组件移植与重建版本。
+新方法同样放入独立 ARE 源码目录，附上论文、来源和改动说明，保持原生工厂接口。
 提交信息使用 Angular 风格。
 
 </details>
 
 ---
 
-<p align="center">
-<sub>为开放 RSI 研究而构建 · <a href="LICENSE">MIT</a> · HarnessMM 组件：Apache-2.0 · <a href="THIRD_PARTY_NOTICES.md">来源与许可</a></sub>
-</p>
+<p align="center"><sub>为开放 RSI 研究而构建 · <a href="LICENSE">MIT</a> · HarnessMM 控制器：Apache-2.0 · <a href="THIRD_PARTY_NOTICES.md">来源与许可</a></sub></p>

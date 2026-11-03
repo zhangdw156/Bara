@@ -2,9 +2,9 @@
 
 <img src="assets/readme/hero.svg" width="100%" alt="Better ARE ReAct Agent · RSI research on GAIA2">
 
-<h3>RSI research, built on native ARE ReAct.</h3>
+<h3>One directory. One evolved ARE ReAct source tree.</h3>
 
-<p>Study the papers. Compare the agents. Build your next iteration.</p>
+<p>Read the code. Run the agent. Build your next iteration.</p>
 
 <p>
 <a href="https://github.com/facebookresearch/meta-agents-research-environments"><img src="https://img.shields.io/badge/Native-ARE_1.2.0-2d6b59?style=for-the-badge&amp;labelColor=193b32" alt="Native ARE 1.2.0"></a>
@@ -12,170 +12,134 @@
 <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-b37d29?style=for-the-badge&amp;labelColor=684c23" alt="MIT license; upstream component notices below"></a>
 </p>
 
-<p>
-<a href="#collection"><b>Agent collection</b></a>
-&nbsp; · &nbsp;
-<a href="#quick-start"><b>Quick start</b></a>
-&nbsp; · &nbsp;
-<a href="#papers"><b>Papers & sources</b></a>
-&nbsp; · &nbsp;
-<a href="README.zh-CN.md"><b>中文说明</b></a>
-</p>
+<p><a href="#collection"><b>Agent sources</b></a> &nbsp; · &nbsp; <a href="#quick-start"><b>Quick start</b></a> &nbsp; · &nbsp; <a href="#papers"><b>Papers</b></a> &nbsp; · &nbsp; <a href="README.zh-CN.md"><b>中文说明</b></a></p>
 
 </div>
 
-**Better ARE ReAct Agent** collects practical implementations inspired by recent
-recursive self-improvement papers. It is for researchers who want to compare
-agent designs, run ablations, and study further harness evolution on **GAIA2**.
+**Better ARE ReAct Agent (bara)** collects independent ARE ReAct implementations
+inspired by recent recursive self-improvement research. **Each agent directory
+contains its own ARE source**, native import paths and project environment.
 
 > [!NOTE]
-> **Research reimplementations, without a fidelity guarantee.** These are independent starting points, not the authors' complete final agents or reproductions of their reported scores. [Scope and differences →](docs/SOURCES.md)
+> **Research implementations, without a fidelity guarantee.** The collection is a practical starting point for studying RSI on GAIA2. It does not claim to recover the authors' complete final agents or reproduce their scores.
 
 <a id="collection"></a>
 
-## 🧩 Agent collection
-
-Four papers, five enhanced variants, and an unchanged native baseline.
+## 🧩 Agent source collection
 
 <table>
 <tr>
 <td width="50%" valign="top">
 <h3>🛠️ AutoSaddler</h3>
-<p><sub><b>PROMPT & TASK POLICY</b></sub></p>
-<p>Communication, ambiguity, and ordered subtasks. A prompt-centered starting point for studying task policy.</p>
-<p><a href="https://arxiv.org/abs/2608.23041"><b>Paper ↗</b></a> &nbsp; · &nbsp; <a href="docs/SOURCES.md#autosaddler">Implementation notes →</a></p>
+<p><sub><b>TASK POLICY & TOOL ALGORITHMS</b></sub></p>
+<p>Communication, ambiguity, ordering and public search/batch adaptations.</p>
+<p><a href="autosaddler/"><b>Open source →</b></a> &nbsp; · &nbsp; <a href="https://arxiv.org/abs/2608.23041">Paper ↗</a></p>
 </td>
 <td width="50%" valign="top">
 <h3>🧭 ActiveSaddler</h3>
-<p><sub><b>ACTION GUARDS</b></sub></p>
-<p>Case-study repairs for email signatures and calendar ambiguity, applied before native tool execution.</p>
-<p><a href="https://arxiv.org/abs/2610.00906"><b>Paper ↗</b></a> &nbsp; · &nbsp; <a href="docs/SOURCES.md#activesaddler">Implementation notes →</a></p>
+<p><sub><b>ACTION REPAIRS</b></sub></p>
+<p>Email signature and calendar ambiguity repairs inside the native model step.</p>
+<p><a href="activesaddler/"><b>Open source →</b></a> &nbsp; · &nbsp; <a href="https://arxiv.org/abs/2610.00906">Paper ↗</a></p>
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
 <h3>⚖️ ParetoSaddler</h3>
 <p><sub><b>QUALITY & COST</b></sub></p>
-<p>Two agent-side variants, I-23 and I-22, for comparing task guidance and efficiency-oriented behavior.</p>
-<p><a href="https://arxiv.org/abs/2611.02079"><b>Paper ↗</b></a> &nbsp; · &nbsp; <a href="docs/SOURCES.md#paretosaddler">Implementation notes →</a></p>
+<p>Two independent source trees from different searches, with task policies and terminal handling.</p>
+<p><a href="paretosaddler-i23/"><b>I-23 source →</b></a> &nbsp; · &nbsp; <a href="paretosaddler-i22/"><b>I-22 source →</b></a> &nbsp; · &nbsp; <a href="https://arxiv.org/abs/2611.02079">Paper ↗</a></p>
 </td>
 <td width="50%" valign="top">
 <h3>🔁 HarnessMM</h3>
 <p><sub><b>DECISION REUSE</b></sub></p>
-<p>A public continuation controller that reuses already-decided actions when tool feedback meets their conditions.</p>
-<p><a href="https://arxiv.org/abs/2610.32813"><b>Paper ↗</b></a> &nbsp; · &nbsp; <a href="docs/SOURCES.md#harnessmm">Implementation notes →</a></p>
+<p>Public deterministic continuation when native tool feedback matches planned conditions.</p>
+<p><a href="harnessmm/"><b>Open source →</b></a> &nbsp; · &nbsp; <a href="https://arxiv.org/abs/2610.32813">Paper ↗</a></p>
 </td>
 </tr>
 </table>
 
-<details>
-<summary><b>View all six agent IDs</b></summary>
+```text
+better-are-react-agent/
+├── autosaddler/
+├── activesaddler/
+├── paretosaddler-i23/
+├── paretosaddler-i22/
+├── harnessmm/
+└── src/bara/                 # CLI and evaluation tools
+```
 
-| Agent ID | Implementation |
-| --- | --- |
-| `baseline` | Native ARE ReAct, unchanged |
-| `autosaddler-appendix` | AutoSaddler agent-side policy |
-| `activesaddler-appendix` | ActiveSaddler case-study policy and guards |
-| `paretosaddler-i23-appendix` | ParetoSaddler I-23 policy |
-| `paretosaddler-i22-appendix` | ParetoSaddler I-22 policy and terminal-text conversion |
-| `harnessmm-public-continuation` | HarnessMM public deterministic continuation |
-
-Use `baseline` for the native control. Each variant keeps the same scenario tool
-set; environment-tool extensions described in the papers are not bundled.
-
-</details>
+Every agent directory contains `are/`, `pyproject.toml`, `uv.lock`, `README.md`,
+`CHANGES.md`, and tests. It can be copied and installed independently. Research
+code lives in its own `are/simulation/agents/default_agent/`; the `bara` package
+contains no agent implementation. [Use a source with an existing evaluator →](docs/USAGE.md)
 
 <a id="quick-start"></a>
 
 ## 🚀 Quick start
 
-From the repository root, install the project and run the offline check:
-`uv sync` creates `.venv/` and installs the project and development tools.
+From the collection root:
 
 ```sh
 uv sync
-uv run better-are-react-agent smoke
+uv run bara list
+uv run bara smoke autosaddler
 ```
-The check executes real ARE steps and tools with scripted responses. It needs no
-API key or benchmark download and does not measure GAIA2 success.
 
-## 🔌 One interface, every variant
+The smoke check uses scripted responses and real native ARE tools, with no API key
+or dataset download. Bara automatically prepares the selected directory's `.venv`.
 
-Choose the implementation when creating the native agent:
+| Command | Purpose |
+| --- | --- |
+| `uv run bara benchmark autosaddler --help` | Dataset evaluation options |
+| `uv run bara gaia2 harnessmm --help` | Full GAIA2 protocol options |
+| `uv run bara judge autosaddler --help` | Offline judging options |
+| `uv run bara smoke` | Offline smoke for every source |
+| `uv run bara test` | Local source and evaluation tests |
+| `uv run bara build` | Build each independent ARE package |
+
+[Dataset layout, model options and result files →](docs/EVALUATION.md)
+
+## 🔌 Native ARE interface
+
+Every source keeps the same import and factory signature:
 
 ```python
-from better_are_react_agent import create_agent
+from are.simulation.agents.default_agent.agent_factory import are_simulation_react_json_agent
 
-agent = create_agent(
-    llm_engine,
-    base_agent_config,
-    variant="harnessmm-public-continuation",
-)
+agent = are_simulation_react_json_agent(llm_engine, base_agent_config)
 agent.tools = scenario_tools
 ```
-Every variant returns ARE's **`BaseAgent`**, keeping the native reasoning loop and
-JSON tool executor. Your evaluator provides the model engine, scenario tools,
-notifications, clock, and scoring.
 
-<details>
-<summary><b>Native factory signature & entry points</b></summary>
-
-Named factories match `are_simulation_react_json_agent`'s two-argument interface:
-
-```python
-from better_are_react_agent.factories import autosaddler_appendix
-
-agent = autosaddler_appendix(llm_engine, base_agent_config)
-```
-
-Factories are registered in the Python entry-point group `are.react_agents`.
-Installation does not change another program's selected agent automatically.
-See the [integration contract](docs/INTEGRATION.md) for factory discovery,
-content identities, and checkpoint state.
-
-</details>
+Choose the source directory before importing ARE. Each source uses its own
+process/environment and returns its native `BaseAgent`. Existing evaluators keep
+their usual ARE call. Bara's evaluator uses the selected source's ordinary native
+builders, tools, simulator and judge.
 
 <a id="papers"></a>
 
 ## 📚 Papers & sources
 
-The collection draws on the following papers. Please cite the original work when
-using a corresponding idea or implementation in your research.
+- **[AutoSaddler](https://arxiv.org/abs/2608.23041)** — Automatic Harness Optimization with Durable Updates from Agent Execution Traces.
+- **[ActiveSaddler](https://arxiv.org/abs/2610.00906)** — Automated Curriculum Learning for Agent Harness Optimization.
+- **[ParetoSaddler](https://arxiv.org/abs/2611.02079)** — Pareto-Guided Optimization of Agent Harnesses for Quality and Cost.
+- **[HarnessMM](https://arxiv.org/abs/2610.32813)** — Recursive Self-Improvement for Harness Token Efficiency.
 
-- **[AutoSaddler](https://arxiv.org/abs/2608.23041)** — Automatic Harness Optimization with Durable Updates from Agent Execution Traces. [arXiv:2608.23041](https://arxiv.org/abs/2608.23041)
-- **[ActiveSaddler](https://arxiv.org/abs/2610.00906)** — Automated Curriculum Learning for Agent Harness Optimization. [arXiv:2610.00906](https://arxiv.org/abs/2610.00906)
-- **[ParetoSaddler](https://arxiv.org/abs/2611.02079)** — Pareto-Guided Optimization of Agent Harnesses for Quality and Cost. [arXiv:2611.02079](https://arxiv.org/abs/2611.02079)
-- **[HarnessMM](https://arxiv.org/abs/2610.32813)** — Recursive Self-Improvement for Harness Token Efficiency. [arXiv:2610.32813](https://arxiv.org/abs/2610.32813)
-
-Original repositories, appendix sections, implemented components, and missing
-pieces are mapped in the [source notes](docs/SOURCES.md).
-
-## ✅ Validation & development
-
-<a href="https://github.com/zhangdw156/better-are-react-agent/actions/workflows/test.yml"><img src="https://github.com/zhangdw156/better-are-react-agent/actions/workflows/test.yml/badge.svg" alt="Native agent checks"></a>
-
-Checks cover native tool execution, variant isolation, continuation reuse,
-notification invalidation, and controller-state recovery. CI runs on **Python
-3.12 and 3.13**. Real-model benchmark results are not yet reported.
-[Validation scope →](docs/VALIDATION.md)
+Per-directory source manifests and implementation notes distinguish public code
+ports from appendix reconstructions. [Source coverage →](docs/SOURCES.md)
 
 <details>
-<summary><b>Run the development checks</b></summary>
+<summary><b>Local validation and contribution</b></summary>
 
-```sh
-uv run pytest
-uv run ruff check src tests
-uv build
-```
+Tests exercise native execution, pending-request recovery, method-specific behavior,
+and synthetic dataset evaluation. [Validation scope →](docs/VALIDATION.md)
+No live benchmark result is claimed. Checks are local; no automatic workflow is configured.
 
-When adding a variant, record its paper, implementation choices, and differences
-in the catalogue and source notes. Keep public component ports distinct from
-reconstructions, and use Angular-style commit messages.
+Add a new implementation as an independent ARE source directory with a paper URL,
+source manifest and documented differences. Keep the native factory interface.
+Use Angular-style commit messages.
 
 </details>
 
 ---
 
-<p align="center">
-<sub>Built for open RSI research · <a href="LICENSE">MIT</a> · HarnessMM component: Apache-2.0 · <a href="THIRD_PARTY_NOTICES.md">Attribution & licenses</a></sub>
-</p>
+<p align="center"><sub>Built for open RSI research · <a href="LICENSE">MIT</a> · HarnessMM controller: Apache-2.0 · <a href="THIRD_PARTY_NOTICES.md">Attribution & licenses</a></sub></p>

@@ -1,0 +1,1 @@
+The bundled ARE source is copyright Meta Platforms, Inc. and affiliates, under the MIT license in LICENSE. Original research modifications are copyright zhangdw156, also MIT. Native pending-step and success-aware termination improvements originate in the public source revision recorded in SOURCE.json.

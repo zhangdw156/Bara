@@ -1,0 +1,100 @@
+{
+  "source": "https://github.com/autosaddler-projectpage/autosaddler-projectpage.github.io/blob/afd493fa47cdbced1c1a829285836b88d8cdbf70/src/components/EvolutionDemo/evo-data.ts",
+  "source_sha256": "a72a14cbe95c6a49043501c95bba9b4b96a3e58ea99fa7a0781d0830ac0f265e",
+  "patches": [
+    {
+      "parent_iteration": 6,
+      "child_iteration": 8,
+      "diff_sha256": "5d3e40c6cc7227a933b7d894a6f38168f82eef3cb72aa5e31865a9dfdb20287c"
+    },
+    {
+      "parent_iteration": 8,
+      "child_iteration": 11,
+      "diff_sha256": "a11ccde8211e394aa34b6bfe1ad1dddbbe69bd6c5d38cf6a0fb0d4607f0c017b"
+    },
+    {
+      "parent_iteration": 13,
+      "child_iteration": 14,
+      "diff_sha256": "7af2767c693e03a8add7efacbc8238d0feca8c0b36241beea5c900350c470594"
+    },
+    {
+      "parent_iteration": 24,
+      "child_iteration": 25,
+      "diff_sha256": "0a5d15df1855565fdfb8b7512d15cdb6f3a94a3dccd99cfec40d128ccbbb5ae1"
+    }
+  ],
+  "implementation": "Independent agent-side translation of the published algorithms; source code is linked, not vendored.",
+  "activation": "The published patches do not define task-ID, universe-ID, or keyword routing. Disclose only when their original public prerequisites exist; preserve pre-existing native additions.",
+  "algorithms": {
+    "get_crime_rates_batch": {
+      "patch": "I-08 -> I-11",
+      "preserved": [
+        "input order and duplicates",
+        "one native quota charge per ZIP",
+        "skip exact missing-ZIP errors",
+        "propagate rate-limit failures"
+      ],
+      "differences": [
+        "one native event per ZIP instead of one app batch event",
+        "each native call may recheck cooldown; no atomic multi-ZIP snapshot"
+      ]
+    },
+    "get_email_addresses_in_folder": {
+      "patch": "I-13 -> I-14",
+      "preserved": [
+        "unique sorted senders",
+        "unique sorted recipients including cc",
+        "folder selection"
+      ],
+      "differences": [
+        "native list pagination instead of direct folder access",
+        "detected changes in totals or repeated IDs fail; other concurrent changes may be undetected"
+      ]
+    },
+    "get_all_participants_v1": {
+      "patch": "I-13 -> I-14",
+      "preserved": [
+        "unique sorted names",
+        "exclude Me"
+      ],
+      "differences": [
+        "native conversation pagination instead of direct collection access"
+      ]
+    },
+    "get_all_participants_v2": {
+      "patch": "I-13 -> I-14",
+      "preserved": [
+        "unique sorted participant IDs",
+        "exclude current user"
+      ],
+      "differences": [
+        "current identity resolved through public contact and messaging tools; extension withheld when those prerequisites are absent",
+        "native conversation pagination"
+      ]
+    },
+    "search_contacts": {
+      "patch": "I-06 -> I-08",
+      "preserved": [
+        "case-insensitive substring matching",
+        "original name/phone/email and both full-name orders",
+        "additional city/country/nationality/job/address fields",
+        "native result order"
+      ],
+      "differences": [
+        "complete native contact pagination instead of direct collection access"
+      ]
+    },
+    "search_ride_history": {
+      "patch": "I-24 -> I-25",
+      "preserved": [
+        "UTC date filter",
+        "case-insensitive origin and destination filters",
+        "original indexes",
+        "matching_rides, total_matches, total_rides output"
+      ],
+      "differences": [
+        "native history pagination instead of direct collection access"
+      ]
+    }
+  }
+}
