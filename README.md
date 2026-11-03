@@ -2,15 +2,28 @@
 
 [中文说明](README.zh-CN.md)
 
-Runnable, source-traceable research variants of **ARE's native ReAct agent**.
-Every factory returns ARE's `BaseAgent` and retains its native reasoning/tool loop,
-JSON executor, scenario tools, and caller-supplied model engine.
+A collection of **research reimplementations of RSI-improved ARE ReAct agents**
+for researchers studying recursive self-improvement (RSI) on GAIA2.
 
-This repository collects a public HarnessMM component and **partial agent-side
-reconstructions** from AutoSaddler, ActiveSaddler, and ParetoSaddler appendices.
-The reconstructions are independent implementations, **not the authors' complete
-final agents or reproductions of their published scores**. Several papers modify
-environment application tools; those changes are outside these fixed-tool variants.
+We turn ideas and available artifacts from recent papers into runnable native
+ARE ReAct variants. Use them as starting points for comparison, ablation studies,
+and further harness evolution. **These are non-faithful reimplementations, not
+exact reproductions of the authors' final agents or published benchmark scores.**
+
+Every factory returns ARE's `BaseAgent` and retains its native reasoning/tool loop,
+JSON executor, scenario tools, and caller-supplied model engine. This gives the
+collection one consistent interface for evaluation and experimentation.
+
+## Papers
+
+| Paper | URL | Implementations in this repository |
+| --- | --- | --- |
+| AutoSaddler: Automatic Harness Optimization with Durable Updates from Agent Execution Traces | https://arxiv.org/abs/2608.23041 | `autosaddler-appendix` |
+| ActiveSaddler: Automated Curriculum Learning for Agent Harness Optimization | https://arxiv.org/abs/2610.00906 | `activesaddler-appendix` |
+| ParetoSaddler: Pareto-Guided Optimization of Agent Harnesses for Quality and Cost | https://arxiv.org/abs/2611.02079 | `paretosaddler-i23-appendix`, `paretosaddler-i22-appendix` |
+| HarnessMM: Recursive Self-Improvement for Harness Token Efficiency | https://arxiv.org/abs/2610.32813 | `harnessmm-public-continuation` |
+
+## Available agents
 
 | Agent ID | Material | Implemented behavior |
 | --- | --- | --- |
@@ -21,9 +34,11 @@ environment application tools; those changes are outside these fixed-tool varian
 | `paretosaddler-i22-appendix` | Appendix J, Table 17 | Agent-side efficiency/reminder policy and conservative terminal-text conversion |
 | `harnessmm-public-continuation` | Pinned Apache-2.0 code | Published deterministic continuation controller, maximum three actions, with instance-local durable state |
 
-See [source and coverage notes](docs/SOURCES.md) for what each variant does and
-what remains unavailable. Published method names identify the source of the ideas,
-not an endorsement or a benchmark result for this implementation.
+The collection currently contains five enhanced variants and one native baseline.
+Some are prompt-centered, some add guards or execution control. Environment tool
+extensions from the papers are not bundled. See [source and implementation notes](docs/SOURCES.md)
+for the implemented components, differences, and original code links. Each variant
+is a starting point for RSI research; its performance must be measured independently.
 
 ## Install and inspect
 

@@ -106,7 +106,6 @@ assigned to this port.
 
 ERL publishes the retrieval procedure and example heuristics, but the verified
 materials do not provide the full final heuristic pool. "Top 20" describes how
-many heuristics to retrieve; it is not a released list of 20 final rules. An ERL
-agent with a fabricated pool would not be a faithful collection item, so it is not
-included. No unseen author artifacts or undisclosed behavior are reconstructed
-under the guise of original source.
+many heuristics to retrieve; it is not a released list of 20 final rules. ERL is not included in this initial collection. A future non-faithful implementation
+could construct and clearly identify a new heuristic pool, while keeping that pool
+distinct from any claim about the authors' original artifacts.

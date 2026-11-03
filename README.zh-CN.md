@@ -1,9 +1,23 @@
 # better-are-react-agent
 
-收集可运行、可追溯来源的 **ARE 原生 ReAct 增强版本**。所有入口都返回
-ARE 的 `BaseAgent`，保留原生推理循环、工具执行器和调用方提供的模型接口。
+这是一个根据学术前沿论文整理的 **RSI 后 ARE ReAct agent 实现合集**，希望帮助
+想在 GAIA2 上基于 ARE 原生 ReAct 研究递归自改进（RSI）的朋友。
 
-[English](README.md) · [来源与重建范围](docs/SOURCES.md) · [接入约定](docs/INTEGRATION.md)
+我们把论文思想、附录描述和公开代码整理成可运行、可继续改进的版本，方便进行
+对比评测、消融实验和进一步的 harness 演化。**这些实现不追求保真复现，不代表
+作者完整的最终 agent，也不直接继承论文成绩。**
+
+所有入口都返回 ARE 的 `BaseAgent`，保留原生推理循环、工具执行器和调用方提供
+的模型接口，便于用同一种评测流程研究不同增强方法。
+
+[English](README.md) · [来源与实现差异](docs/SOURCES.md) · [接入约定](docs/INTEGRATION.md)
+
+| 论文 | URL | 对应实现 |
+| --- | --- | --- |
+| AutoSaddler | https://arxiv.org/abs/2608.23041 | `autosaddler-appendix` |
+| ActiveSaddler | https://arxiv.org/abs/2610.00906 | `activesaddler-appendix` |
+| ParetoSaddler | https://arxiv.org/abs/2611.02079 | I-23、I-22 两个版本 |
+| HarnessMM | https://arxiv.org/abs/2610.32813 | `harnessmm-public-continuation` |
 
 | 版本 ID | 内容 |
 | --- | --- |
@@ -14,9 +28,8 @@ ARE 的 `BaseAgent`，保留原生推理循环、工具执行器和调用方提�
 | `paretosaddler-i22-appendix` | 根据 I-22 重建效率提示和保守的最终回复转换 |
 | `harnessmm-public-continuation` | 移植公开的确定性延续执行组件，最多连续复用三个动作 |
 
-**附录重建版不是作者完整的最终 agent，也没有复现论文成绩。**论文对环境应用
-工具的修改未包含在这些固定工具版本中。每个版本的已实现内容、缺失内容和来源
-都记录在 `agents.json` 与来源文档中。
+目前包含五个增强版本和一个原生基线。论文对环境应用工具的修改未包含在这些
+固定工具版本中；具体实现内容、差异和来源记录在 `agents.json` 与来源文档中。
 
 在仓库目录下安装到独立环境：
 

@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "better-are-react-agent"
 version = "0.1.0.dev0"
-description = "Source-traceable research variants of the native ARE ReAct agent"
+description = "Research reimplementations of RSI-improved native ARE ReAct agents for GAIA2"
 readme = "README.md"
 requires-python = ">=3.12,<3.14"
 license = "MIT"
