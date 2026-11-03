@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/readme/hero.svg" width="100%" alt="Better ARE ReAct Agent · RSI research on GAIA2">
+<img src="assets/readme/hero.svg" width="100%" alt="Bara · RSI research on GAIA2">
 
 <h3>One directory. One evolved ARE ReAct source tree.</h3>
 
@@ -16,7 +16,7 @@
 
 </div>
 
-**Better ARE ReAct Agent (bara)** collects independent ARE ReAct implementations
+**Bara** (Better ARE ReAct Agent) collects independent ARE ReAct implementations
 inspired by recent recursive self-improvement research. **Each agent directory
 contains its own ARE source**, native import paths and project environment.
 
@@ -59,7 +59,7 @@ contains its own ARE source**, native import paths and project environment.
 </table>
 
 ```text
-better-are-react-agent/
+Bara/
 ├── autosaddler/
 ├── activesaddler/
 ├── paretosaddler-i23/

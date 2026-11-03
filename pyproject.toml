@@ -3,7 +3,7 @@ requires = ["hatchling>=1.27,<2"]
 build-backend = "hatchling.build"
 
 [project]
-name = "better-are-react-agent"
+name = "bara"
 version = "0.1.0.dev0"
 description = "Independent ARE ReAct research source trees and the bara evaluation CLI"
 readme = "README.md"
@@ -19,7 +19,7 @@ bara = "bara.cli:main"
 dev = ["pytest>=8.3,<9", "ruff>=0.11,<1"]
 
 [project.urls]
-Repository = "https://github.com/zhangdw156/better-are-react-agent"
+Repository = "https://github.com/zhangdw156/Bara"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/bara"]

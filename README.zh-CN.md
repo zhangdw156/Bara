@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/readme/hero.svg" width="100%" alt="Better ARE ReAct Agent · RSI research on GAIA2">
+<img src="assets/readme/hero.svg" width="100%" alt="Bara · RSI research on GAIA2">
 
 <h3>一个目录，一份进化后的 ARE ReAct 源码。</h3>
 
@@ -16,7 +16,7 @@
 
 </div>
 
-**Better ARE ReAct Agent（bara）** 根据前沿 RSI 论文的公开代码与附录，整理了五份
+**Bara**（Better ARE ReAct Agent） 根据前沿 RSI 论文的公开代码与附录，整理了五份
 独立的 ARE ReAct 实现。**每个 agent 子目录就是一份可以单独安装、修改和使用的 ARE 源码。**
 
 > [!NOTE]
@@ -38,7 +38,7 @@
 </table>
 
 ```text
-better-are-react-agent/
+Bara/
 ├── autosaddler/
 ├── activesaddler/
 ├── paretosaddler-i23/

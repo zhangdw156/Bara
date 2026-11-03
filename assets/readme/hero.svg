@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="340" viewBox="0 0 1200 340" role="img" aria-labelledby="title desc">
-  <title id="title">Better ARE ReAct Agent</title>
+  <title id="title">Bara</title>
   <desc id="desc">Research implementations for recursive self-improvement on GAIA2. Four papers and five independent native ARE ReAct source trees.</desc>
   <defs>
     <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
@@ -22,7 +22,8 @@
 
     <rect x="62" y="49" width="5" height="18" rx="2.5" fill="#edc27a"/>
     <text x="82" y="64" fill="#b4d4c9" font-size="15" font-weight="650" letter-spacing="2.1">GAIA2 · RECURSIVE SELF-IMPROVEMENT</text>
-    <text x="60" y="150" font-size="73" font-weight="750" letter-spacing="-2.7"><tspan fill="#f3faf7">Better ARE </tspan><tspan fill="#edc27a">ReAct Agent</tspan></text>
+    <text x="60" y="150" fill="#f3faf7" font-size="86" font-weight="750" letter-spacing="-2.7">Bara<tspan fill="#edc27a">.</tspan></text>
+    <text x="292" y="146" fill="#edc27a" font-size="25" font-weight="600">Better ARE ReAct Agent</text>
     <text x="64" y="200" fill="#bfd3cc" font-size="22">From research papers to agents you can study and evolve.</text>
     <line x1="64" y1="239" x2="114" y2="239" stroke="#60c6a9" stroke-width="2"/>
     <text x="64" y="277" fill="#a2c6b8" font-size="14" font-weight="600" letter-spacing="1.7">4 PAPERS <tspan fill="#568b7d"> / </tspan> 5 SOURCE TREES <tspan fill="#568b7d"> / </tspan> NATIVE ARE</text>
