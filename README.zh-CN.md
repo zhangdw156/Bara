@@ -12,7 +12,7 @@
 <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-b37d29?style=for-the-badge&amp;labelColor=684c23" alt="MIT license; upstream component notices below"></a>
 </p>
 
-<p><a href="#collection"><b>源码合集</b></a> &nbsp; · &nbsp; <a href="#quick-start"><b>快速开始</b></a> &nbsp; · &nbsp; <a href="#papers"><b>论文</b></a> &nbsp; · &nbsp; <a href="README.md"><b>English</b></a></p>
+<p><a href="#collection"><b>源码合集</b></a> &nbsp; · &nbsp; <a href="#quick-start"><b>快速开始</b></a> &nbsp; · &nbsp; <a href="#data"><b>数据与评测</b></a> &nbsp; · &nbsp; <a href="#papers"><b>论文</b></a> &nbsp; · &nbsp; <a href="README.md"><b>English</b></a></p>
 
 </div>
 
@@ -76,7 +76,41 @@ Bara 会自动准备所选源码目录自己的 `.venv`。
 | `uv run bara test` | 运行本地测试 |
 | `uv run bara build` | 分别打包五份 ARE 源码 |
 
-[数据目录、模型设置和结果文件 →](docs/EVALUATION.md)
+<a id="data"></a>
+
+## 🗂️ 数据与 mini 全量评测
+
+**Bara 不附带正式 GAIA2 数据**，只包含本地检查用的小型测试场景。
+评测时可以直接在线读取公开的
+[官方 GAIA2 数据集](https://huggingface.co/datasets/meta-agents-research-environments/gaia2)，
+无需手动下载、解压。数据按需读取，运行期间需要保持网络可用。
+
+下面的命令运行整个 `mini` 子集，每题一次。将模型名和接口地址换成实际值，
+并配置服务所需的凭据。示例使用兼容 OpenAI 格式的 agent 和 judge 接口；
+judge 默认沿用 `--provider local`。
+
+```sh
+uv run bara benchmark harnessmm \
+  --hf-dataset meta-agents-research-environments/gaia2 \
+  --hf-config mini \
+  --model openai/YOUR_MODEL \
+  --provider local \
+  --endpoint http://localhost:8000/v1 \
+  --judge_model openai/YOUR_JUDGE_MODEL \
+  --judge_endpoint http://localhost:8001/v1 \
+  --num_runs 1
+```
+
+默认读取 `validation`，不设置 `--limit` 就是所选子集的全量。
+`--num_runs 1` 表示每题一次；不传这个参数时，默认每题三次。
+将 `harnessmm` 换成其他源码目录名，即可评测对应实现。
+结果自动保存到 `runs/<source>/<timestamp>/`。
+
+如果使用本地数据，`--dataset` 接受存放原生 ARE 场景 JSON 的目录，或列出场景路径的
+JSONL 文件。官方 Parquet 需要先转换，Bara 目前没有专门的一键下载转换命令。
+包含 Agent2Agent 和噪声阶段的完整协议使用 `uv run bara gaia2 <source>`。
+
+[本地数据目录、模型设置和完整评测流程 →](docs/EVALUATION.md)
 
 ## 🔌 保持原生 ARE 接口
 

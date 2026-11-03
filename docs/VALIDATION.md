@@ -29,3 +29,7 @@ A separate copy of the HarnessMM directory, outside the collection and without
 its package on the import path, passed `uv sync`, native smoke and all nine local
 source tests on Python 3.13. This checks independent use of that source directory;
 it is not a Python 3.13 result for every full evaluation suite.
+
+The native HarnessMM loader also imported one scenario from the official GAIA2
+`mini` / `validation` subset over the network. This checks real dataset access and
+scenario import only; it is not a model inference or a complete mini evaluation.

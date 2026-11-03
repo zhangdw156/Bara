@@ -12,7 +12,7 @@
 <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-b37d29?style=for-the-badge&amp;labelColor=684c23" alt="MIT license; upstream component notices below"></a>
 </p>
 
-<p><a href="#collection"><b>Agent sources</b></a> &nbsp; · &nbsp; <a href="#quick-start"><b>Quick start</b></a> &nbsp; · &nbsp; <a href="#papers"><b>Papers</b></a> &nbsp; · &nbsp; <a href="README.zh-CN.md"><b>中文说明</b></a></p>
+<p><a href="#collection"><b>Agent sources</b></a> &nbsp; · &nbsp; <a href="#quick-start"><b>Quick start</b></a> &nbsp; · &nbsp; <a href="#data"><b>Data & evaluation</b></a> &nbsp; · &nbsp; <a href="#papers"><b>Papers</b></a> &nbsp; · &nbsp; <a href="README.zh-CN.md"><b>中文说明</b></a></p>
 
 </div>
 
@@ -97,7 +97,43 @@ or dataset download. Bara automatically prepares the selected directory's `.venv
 | `uv run bara test` | Local source and evaluation tests |
 | `uv run bara build` | Build each independent ARE package |
 
-[Dataset layout, model options and result files →](docs/EVALUATION.md)
+<a id="data"></a>
+
+## 🗂️ Data & mini evaluation
+
+**Bara does not bundle the GAIA2 dataset.** It includes small fixtures for local
+checks. For evaluation, Bara can read the public
+[official GAIA2 dataset](https://huggingface.co/datasets/meta-agents-research-environments/gaia2)
+online; no manual download or extraction is needed. Keep network access available
+while it streams the scenarios.
+
+To run the entire `mini` subset once per scenario, use the example below with your
+model names, endpoints and service credentials. The example uses OpenAI-compatible
+agent and judge endpoints; the judge inherits `--provider local`.
+
+```sh
+uv run bara benchmark harnessmm \
+  --hf-dataset meta-agents-research-environments/gaia2 \
+  --hf-config mini \
+  --model openai/YOUR_MODEL \
+  --provider local \
+  --endpoint http://localhost:8000/v1 \
+  --judge_model openai/YOUR_JUDGE_MODEL \
+  --judge_endpoint http://localhost:8001/v1 \
+  --num_runs 1
+```
+
+The split defaults to `validation`. Omitting `--limit` runs the entire selected
+subset; `--num_runs 1` runs each scenario once, while the default is three times.
+Replace `harnessmm` with any other source directory to evaluate that implementation.
+Results go to `runs/<source>/<timestamp>/` automatically.
+
+For local dataset input, `--dataset` accepts native ARE scenario JSON files in a
+directory or a JSONL list of paths. Official Parquet files need conversion first;
+Bara currently has no dedicated download-and-convert command. Use `uv run bara gaia2 <source>`
+for the full protocol, including Agent2Agent and noise phases.
+
+[Local data layout, model settings and full protocol →](docs/EVALUATION.md)
 
 ## 🔌 Native ARE interface
 
