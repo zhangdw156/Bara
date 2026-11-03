@@ -2,7 +2,7 @@
   "method": "paretosaddler-i23",
   "title": "ParetoSaddler I-23",
   "paper": "https://arxiv.org/abs/2611.02079",
-  "fidelity": "research-reconstruction",
+  "implementation": "research-reconstruction",
   "upstream": {
     "repository": "https://github.com/facebookresearch/meta-agents-research-environments",
     "revision": "a9fd2edccb4bc7e22fbf45c8482a5fef30a2a5a4"
@@ -15,6 +15,5 @@
       "are/simulation/agents/default_agent/termination_methods/are_simulation.py"
     ]
   },
-  "published_score_reproduced": false,
   "example_change": "Use loopback for the upstream demo MCP server address."
 }

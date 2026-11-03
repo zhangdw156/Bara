@@ -16,12 +16,10 @@
 
 </div>
 
-**Bara** (Better ARE ReAct Agent) collects independent ARE ReAct implementations
-inspired by recent recursive self-improvement research. **Each agent directory
-contains its own ARE source**, native import paths and project environment.
-
-> [!NOTE]
-> **Research reimplementations; exact fidelity is not guaranteed.** Each directory's `CHANGES.md` describes implementation coverage and differences from the paper.
+**Bara** (Better ARE ReAct Agent) collects five ARE ReAct research reimplementations
+based on public code and appendices from four recursive self-improvement papers.
+**Each agent directory is an installable ARE project** for studying, evaluating
+and developing agent variants.
 
 <a id="collection"></a>
 
@@ -85,8 +83,8 @@ uv run bara list
 uv run bara smoke autosaddler
 ```
 
-The smoke check uses scripted responses and real native ARE tools, with no API key
-or dataset download. Bara automatically prepares the selected directory's `.venv`.
+The smoke check runs offline using scripted model responses and native ARE tools.
+Bara automatically prepares the selected directory's `.venv`.
 
 | Command | Purpose |
 | --- | --- |
@@ -101,11 +99,10 @@ or dataset download. Bara automatically prepares the selected directory's `.venv
 
 ## 🗂️ Data & mini evaluation
 
-**Bara does not bundle the GAIA2 dataset.** It includes small fixtures for local
-checks. For evaluation, Bara can read the public
+Use `--hf-dataset` to read the
 [official GAIA2 dataset](https://huggingface.co/datasets/meta-agents-research-environments/gaia2)
-online; no manual download or extraction is needed. Keep network access available
-while it streams the scenarios.
+during evaluation. Scenarios stream from Hugging Face, so keep network access
+available throughout the run.
 
 To run the entire `mini` subset once per scenario, use the example below with your
 model names, endpoints and service credentials. The example uses OpenAI-compatible
@@ -129,15 +126,15 @@ Replace `harnessmm` with any other source directory to evaluate that implementat
 Results go to `runs/<source>/<timestamp>/` automatically.
 
 For local dataset input, `--dataset` accepts native ARE scenario JSON files in a
-directory or a JSONL list of paths. Official Parquet files need conversion first;
-Bara currently has no dedicated download-and-convert command. Use `uv run bara gaia2 <source>`
-for the full protocol, including Agent2Agent and noise phases.
+directory or a JSONL list of paths. To use local Parquet data, export each row's
+`data` field as a scenario JSON file. Use `uv run bara gaia2 <source>` for the full
+protocol, including Agent2Agent and noise phases.
 
 [Local data layout, model settings and full protocol →](docs/EVALUATION.md)
 
 ## 🔌 Native ARE interface
 
-Every source keeps the same import and factory signature:
+Each source exposes the native factory:
 
 ```python
 from are.simulation.agents.default_agent.agent_factory import are_simulation_react_json_agent
@@ -146,10 +143,10 @@ agent = are_simulation_react_json_agent(llm_engine, base_agent_config)
 agent.tools = scenario_tools
 ```
 
-Choose the source directory before importing ARE. Each source uses its own
-process/environment and returns its native `BaseAgent`. Existing evaluators keep
-their usual ARE call. Bara's evaluator uses the selected source's ordinary native
-builders, tools, simulator and judge.
+Select the source directory and its environment before importing ARE. The factory
+returns a native `BaseAgent`. Bara's evaluator uses the selected source's builders,
+tools, user simulator and judge. See the [integration guide](docs/USAGE.md) for use
+with an existing evaluator.
 
 <a id="papers"></a>
 

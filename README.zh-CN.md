@@ -16,11 +16,9 @@
 
 </div>
 
-**Bara**（Better ARE ReAct Agent） 根据前沿 RSI 论文的公开代码与附录，整理了五份
-独立的 ARE ReAct 实现。**每个 agent 子目录就是一份可以单独安装、修改和使用的 ARE 源码。**
-
-> [!NOTE]
-> **研究性重实现，不保证保真。** 各目录的 `CHANGES.md` 记录具体实现范围和与论文的差异。
+**Bara**（Better ARE ReAct Agent）根据四篇 RSI 论文的公开代码与附录，整理了五份
+ARE ReAct 研究实现。**每个 agent 子目录就是一份可以单独安装、修改和评测的 ARE 源码**，
+方便研究者阅读实现、比较方法并继续开展 RSI 实验。
 
 <a id="collection"></a>
 
@@ -64,8 +62,8 @@ uv run bara list
 uv run bara smoke autosaddler
 ```
 
-离线检查用预设模型回复执行真实 ARE 工具，无需 API 密钥或数据下载。
-Bara 会自动准备所选源码目录自己的 `.venv`。
+离线检查用预设模型回复执行原生 ARE 工具。
+Bara 会自动准备所选源码目录的 `.venv`。
 
 | 命令 | 用途 |
 | --- | --- |
@@ -80,10 +78,9 @@ Bara 会自动准备所选源码目录自己的 `.venv`。
 
 ## 🗂️ 数据与 mini 全量评测
 
-**Bara 不附带正式 GAIA2 数据**，只包含本地检查用的小型测试场景。
-评测时可以直接在线读取公开的
-[官方 GAIA2 数据集](https://huggingface.co/datasets/meta-agents-research-environments/gaia2)，
-无需手动下载、解压。数据按需读取，运行期间需要保持网络可用。
+评测时通过 `--hf-dataset` 在线读取
+[官方 GAIA2 数据集](https://huggingface.co/datasets/meta-agents-research-environments/gaia2)。
+场景从 Hugging Face 按需加载，运行期间需要保持网络可用。
 
 下面的命令运行整个 `mini` 子集，每题一次。将模型名和接口地址换成实际值，
 并配置服务所需的凭据。示例使用兼容 OpenAI 格式的 agent 和 judge 接口；
@@ -107,14 +104,14 @@ uv run bara benchmark harnessmm \
 结果自动保存到 `runs/<source>/<timestamp>/`。
 
 如果使用本地数据，`--dataset` 接受存放原生 ARE 场景 JSON 的目录，或列出场景路径的
-JSONL 文件。官方 Parquet 需要先转换，Bara 目前没有专门的一键下载转换命令。
+JSONL 文件。使用本地 Parquet 时，先将每行的 `data` 字段导出为场景 JSON 文件。
 包含 Agent2Agent 和噪声阶段的完整协议使用 `uv run bara gaia2 <source>`。
 
 [本地数据目录、模型设置和完整评测流程 →](docs/EVALUATION.md)
 
-## 🔌 保持原生 ARE 接口
+## 🔌 原生 ARE 接口
 
-先选择源码目录，再使用原来的导入和调用方式：
+选定源码目录后，使用原生工厂创建 agent：
 
 ```python
 from are.simulation.agents.default_agent.agent_factory import are_simulation_react_json_agent
@@ -123,9 +120,9 @@ agent = are_simulation_react_json_agent(llm_engine, base_agent_config)
 agent.tools = scenario_tools
 ```
 
-每份源码返回自己的原生 `BaseAgent`。不同源码使用独立进程和环境。
-已有评测程序继续调用原生 ARE 接口；Bara 的定制 GAIA CLI 也使用所选源码中的
-原生 builder、工具、user simulator 和 judge。
+导入 ARE 前，先选择源码目录及其环境。工厂返回原生 `BaseAgent`。
+Bara 的评测程序使用所选源码中的 builder、工具、user simulator 和 judge。
+已有评测程序的接入方式见[使用说明](docs/USAGE.md)。
 
 <a id="papers"></a>
 

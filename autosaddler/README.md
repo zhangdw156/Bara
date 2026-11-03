@@ -16,5 +16,5 @@ agent.tools = scenario_tools
 
 From this directory, `uv sync` creates its own `.venv`. From the collection root, `uv run bara smoke autosaddler` checks the same source with scripted model responses. `uv run bara benchmark autosaddler --help` opens the evaluation options.
 
-This research reimplementation draws on the linked paper and public sources.
-[CHANGES.md](CHANGES.md) documents the implemented components and differences from the paper.
+Implements task policies and six public tool algorithms from AutoSaddler.
+See [CHANGES.md](CHANGES.md) for implementation details and source references.

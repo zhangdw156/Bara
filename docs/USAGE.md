@@ -15,10 +15,10 @@ agent = are_simulation_react_json_agent(llm_engine, base_agent_config)
 agent.tools = scenario_tools
 ```
 
-The returned object is the local native `BaseAgent`. Model transport, scenario
-notifications, time management, judging, and trial ownership remain the caller's
-responsibility. The implementation uses native logs, `custom_state`, and
-`pending_step`; restore them together at the caller's request boundary.
+The factory returns a native `BaseAgent`. The evaluator manages model transport,
+scenario notifications, time management, judging and trials. The implementation
+uses native logs, `custom_state` and `pending_step`; restore them together at the
+caller's request boundary.
 
 Run each source in its own process and environment because all five use the same
 `are` module namespace and distribution name. Select the source before importing

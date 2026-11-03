@@ -1,4 +1,4 @@
-"""Record actual source contents, without a plugin registry or fixed revision gate."""
+"""Record source contents and provenance for an evaluation."""
 
 import hashlib
 import inspect

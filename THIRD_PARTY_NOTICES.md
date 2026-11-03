@@ -10,7 +10,7 @@ are retained. The demo MCP address is changed to loopback.
 
 HarnessMM's extracted continuation controller is Apache-2.0, with its license,
 source hashes and notices under harnessmm/are/simulation/agents/default_agent/vendor/.
-The original controller bodies are retained; the original research runner is omitted.
+The controller functions are copied from the source revision recorded in that directory.
 
 The shared evaluation CLI adapts three ARE 1.2.0 benchmark modules. Their original
 MIT license, source hashes and modifications are recorded in src/bara/benchmark/.

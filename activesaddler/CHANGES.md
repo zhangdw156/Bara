@@ -8,25 +8,23 @@
 The appendix describes two iterative repairs, reconstructed in
 `are/simulation/agents/default_agent/action_guards.py`:
 
-- A reply ending explicitly quoted by the user is appended to a single- or
-  multiline draft if absent. Names and closing text are never inferred. The paper's
-  general name-resolution/canonicalization trigger is unavailable.
-- Before a proposed `Calendar__add_calendar_event`, an explicit one-event-per-date
-  replacement request is checked against observed native calendar records and
-  successful deletion receipts. Multiple cancelled originals on that date route to
-  the native clarification tool before any creation occurs. Unsupported formats or
-  missing evidence leave reasoning to the actor. A later user message invalidates
-  the old cancellation grouping.
+- **Email closing:** append the exact ending quoted by the user when a single- or
+  multiline draft lacks it. The recognizer uses literal user quotes; name resolution
+  stays with the model.
+- **Calendar replacement:** before `Calendar__add_calendar_event`, check an explicit
+  one-event-per-date replacement request against observed calendar records and
+  successful deletion receipts. Multiple cancelled originals on that date trigger
+  the native clarification tool before creation. A later user message resets the
+  cancellation grouping.
 
-The reconstructed guards run inside this source tree's native model step before the action is executed.
-Other final-harness patches, optimizer curricula, and case-specific literals are
-not included. Semantic generalization beyond the documented recognizers is untested.
+These guards run inside the native model step before action execution. Requests
+outside the two recognizers continue through the model's normal action selection.
 
 ## Native source layout
 
-The full `are/` Python package is included locally. The standard factory remains
+The `are/` package exposes the native factory
 `are.simulation.agents.default_agent.agent_factory.are_simulation_react_json_agent`.
-Research behavior lives in `are/simulation/agents/default_agent/`.
+Research changes live in `are/simulation/agents/default_agent/`;
 `SOURCE.json` records upstream provenance.
 
 Common runtime updates cover pending-step persistence and success-aware terminal

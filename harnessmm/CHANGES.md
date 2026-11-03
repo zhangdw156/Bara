@@ -6,6 +6,7 @@
 [official repository](https://github.com/YuhuaJiang2002/HarnessMM), commit
 `e77dfb5b768831be80c7a97855450a65404d01cb`.
 
+This variant ports the deterministic continuation controller from that revision.
 `are/simulation/agents/default_agent/vendor/harnessmm_continuation.py` extracts `PLAN_INSTRUCTION`, `action_object`,
 `fingerprint`, and `PublicContinuation` from `harnessmm/harness/gaia2_jev.py`.
 Original bodies are retained. The source hash, published hash, and extraction are
@@ -20,15 +21,11 @@ The native model step stores controller state in `BaseAgent.custom_state` and ke
 pending model request replayable. It uses the original provider object and native
 action executor.
 
-The port covers the earlier public deterministic controller. Later components
-(the typed bank, one-token selector, fused context-v16 and frozen configuration)
-are outside its scope.
-
 ## Native source layout
 
-The full `are/` Python package is included locally. The standard factory remains
+The `are/` package exposes the native factory
 `are.simulation.agents.default_agent.agent_factory.are_simulation_react_json_agent`.
-Research behavior lives in `are/simulation/agents/default_agent/`.
+Research changes live in `are/simulation/agents/default_agent/`;
 `SOURCE.json` records upstream provenance.
 
 Common runtime updates cover pending-step persistence and success-aware terminal

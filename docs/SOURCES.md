@@ -14,8 +14,8 @@ its implementation notes.
 
 The two ParetoSaddler directories represent different searches. HarnessMM ports
 the earlier public deterministic continuation controller. Each `SOURCE.json`
-records source provenance; each `CHANGES.md` describes component coverage and
-omitted features.
+records source provenance; each `CHANGES.md` describes the implementation and its
+differences from the paper.
 
 ARE originates from Meta's MIT-licensed source. HarnessMM's extracted controller
 retains its Apache-2.0 license. Paper links are listed above.

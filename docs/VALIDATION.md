@@ -1,4 +1,4 @@
-# Validation scope
+# Local validation
 
 Run local checks with `uv run bara test`, `uv run bara smoke` and `uv run bara build`.
 
@@ -19,6 +19,4 @@ check covers the full protocol's phase configuration.
 | Native smoke and package builds | All five sources | Passed; wheels contain native factories and research files, and archives include manifests and lockfiles |
 | `uv sync`, smoke and local tests, Python 3.13 | HarnessMM copied outside the collection | Passed, including nine source tests |
 | Official GAIA2 `mini` / `validation` import | Native HarnessMM loader, one scenario over the network | Passed |
-
-The packaged HarnessMM controller matches its recorded public source hash.
-Live model inference and complete GAIA2 evaluations have not been run.
+| HarnessMM controller provenance | Packaged controller compared with the recorded public source hash | Matched |

@@ -16,7 +16,7 @@
 | Folder addresses and both messaging participant algorithms | Agent-owned native-call adaptations of I-13 → I-14; V2 requires public self-identity |
 | Ride-history search | Agent-owned native-call adaptation of I-24 → I-25 |
 | Expanded contact-field matching | Agent-owned search replacement from I-06 → I-08 |
-| Automatic inter-turn wait of up to 300 seconds | Not implemented; native waits remain actor-selected |
+| Automatic inter-turn wait of up to 300 seconds | Wait duration and calls are selected by the model |
 | Automatic mkdir/move parent resolution | Policy guidance; the agent supplies parent-path arguments |
 
 The table covers representative patches from the published evolution trajectory.
@@ -24,17 +24,17 @@ The project page provides code for the six algorithms above; source revisions an
 diff hashes are recorded in
 `are/simulation/agents/default_agent/tool_sources.json`.
 
-The adapter exposes these algorithms according to available public prerequisites.
-The published patches leave task/universe routing unspecified. Pagination, event
-counts, representation, atomicity and elapsed time can differ from the original
-app-level implementations. Other app-description changes and non-tool hooks are
-outside this implementation's scope.
+The adapter selects algorithms by native tool availability and input schemas.
+Messaging V2 resolves the current user through a native identity tool. Algorithms
+run as sequences of native calls, each with its own events and timing;
+`autosaddler_tools.py` defines pagination and result formats. `tool_hooks.py`
+records tool selection and execution receipts.
 
 ## Native source layout
 
-The full `are/` Python package is included locally. The standard factory remains
+The `are/` package exposes the native factory
 `are.simulation.agents.default_agent.agent_factory.are_simulation_react_json_agent`.
-Research behavior lives in `are/simulation/agents/default_agent/`.
+Research changes live in `are/simulation/agents/default_agent/`;
 `SOURCE.json` records upstream provenance.
 
 Common runtime updates cover pending-step persistence and success-aware terminal

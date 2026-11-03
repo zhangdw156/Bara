@@ -15,13 +15,10 @@ output paths remain relative to the directory where you invoke the command.
 
 ## Read the official dataset online
 
-Bara does not bundle the official GAIA2 dataset. The small scenarios used by smoke
-and tests are fixtures, not benchmark data. The public dataset is hosted at
+Use `--hf-dataset` to stream scenarios from the public dataset at
 [meta-agents-research-environments/gaia2](https://huggingface.co/datasets/meta-agents-research-environments/gaia2).
-
-With network access, use `--hf-dataset` to stream scenarios directly. No manual
-download, extraction or directory setup is needed. Keep network access available
-during the run; streaming does not prepare a complete offline JSON dataset.
+Keep network access available throughout the run. For local input, use the
+[scenario JSON layout below](#use-prepared-local-data).
 
 This example evaluates the entire `mini` subset once per scenario:
 
@@ -48,9 +45,8 @@ URL. For another provider, use its model naming and `--provider`; set
 | Setting | Behavior |
 | --- | --- |
 | `--hf-config mini` | Select the mini subset |
-| No `--hf-split` | Defaults to `validation` for Hub data |
-| No `--limit` | Run the entire selected subset |
-| `--limit N` | Load up to N scenarios per selected configuration |
+| `--hf-split` | Defaults to `validation` for Hub data |
+| `--limit N` | Load up to N scenarios per selected configuration; defaults to the entire subset |
 | `--num_runs 1` | Run each scenario once; the default is three times |
 | `--max_concurrent_scenarios N` | Run up to N scenarios concurrently; otherwise ARE chooses from the CPU count |
 
@@ -60,7 +56,7 @@ question-answer datasets need an ARE scenario implementation before evaluation.
 
 ## Use prepared local data
 
-For evaluation without Hub access, prepare native ARE JSON scenarios, then replace
+To evaluate local native ARE JSON scenarios, replace
 `--hf-dataset ... --hf-config mini` in the example above with:
 
 ```sh
@@ -76,12 +72,9 @@ data/gaia2/
     └── scenario_002.json
 ```
 
-The official download contains **Parquet** files. Downloading those files alone
-does not produce this layout. To prepare it, read the selected Parquet file and
-write each row's `data` field as a separate scenario `.json` file under `mini/`.
-The file must contain the scenario object, not the whole dataset row or a
-JSON-encoded string containing that object. Bara currently has no dedicated
-command to download and convert the dataset.
+The official download contains **Parquet** files. To create this layout, parse
+each row's `data` field as JSON and save the resulting scenario object in a
+separate `.json` file under `mini/`.
 
 If you preserve a split directory such as `data/gaia2/mini/validation/`, also pass
 `--hf-split validation`; local paths append the configuration and split only when
@@ -97,8 +90,8 @@ Use absolute paths or paths relative to the directory where you invoke Bara:
 {"trace_id": "data/gaia2/mini/scenario_002.json"}
 ```
 
-Omit `--hf-config` for JSONL input. Choose exactly one of `--dataset` and
-`--hf-dataset`. A local path does not trigger an automatic Hub download.
+For JSONL input, omit `--hf-config`. Use `--dataset` for local files or
+`--hf-dataset` for Hub data.
 
 ## Execution behavior
 
@@ -125,16 +118,16 @@ uv run bara gaia2 harnessmm \
   --judge_endpoint http://localhost:8001/v1
 ```
 
-This retains ARE's full protocol: the five capability configurations plus its
+This runs ARE's full protocol: the five capability configurations plus its
 Agent2Agent and noise phases on `mini`, with three repetitions per scenario.
 Use `benchmark` for a mini-only evaluation or a JSONL selection. For local input,
 the dataset must include all five capability directories and `mini`; replace
-`--hf-dataset ...` with `--dataset data/gaia2`. These are real evaluations and make
-model calls, including the additional app agents in the Agent2Agent phase.
+`--hf-dataset ...` with `--dataset data/gaia2`. The Agent2Agent phase also makes
+model calls for the app agents.
 
 ## Results and judging
 
-Without `--output_dir`, each invocation creates `runs/<source>/<timestamp>/`.
+Results default to `runs/<source>/<timestamp>/`; set `--output_dir` to choose a path.
 Results include native traces, `benchmark_stats.json`, and `agent_source.json`
 recording the selected method, paper, upstream provenance and actual source digest.
 Each output directory belongs to one source; its digest identifies the code used
@@ -146,8 +139,6 @@ For offline judging of native exported traces:
 uv run bara judge autosaddler --dataset path/to/exported-traces --help
 ```
 
-Hub upload occurs only when explicitly requested with the native upload option.
-
 ## Local checks
 
 ```sh
@@ -157,5 +148,5 @@ uv run bara build
 ```
 
 These operate on all five source directories. Add a directory name to check just
-one. Smoke and tests use scripted responses and synthetic local scenarios, with
-no paid model calls.
+one. Smoke and tests run offline using scripted responses and synthetic local
+scenarios.

@@ -152,11 +152,7 @@ def _input(kind, description, **options):
 
 
 def select_tools(context, native, call):
-    """Expose published capabilities when their native prerequisites exist.
-
-    No task keywords or universe IDs occur in the published patch, so this hook
-    deliberately does not invent a task-specific routing algorithm.
-    """
+    """Select tool adaptations by native tool availability and input schemas."""
     changes = ToolChanges()
 
     def install(name, inputs, description, execute, source_patch, required, replace=False):

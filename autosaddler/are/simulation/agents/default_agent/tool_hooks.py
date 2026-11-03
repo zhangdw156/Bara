@@ -20,7 +20,7 @@ def digest(value):
 
 @dataclass(frozen=True)
 class ToolContext:
-    """Task text and optional public labels supplied by the evaluator, not hidden state."""
+    """Task text and optional public labels supplied by the evaluator."""
 
     task: str = ""
     universe_id: str | None = None
@@ -43,7 +43,7 @@ class ToolHook:
 
 
 class DerivedTool(Tool):
-    """An agent-owned operation whose implementation receives only public call access."""
+    """An agent operation implemented through native tool calls."""
 
     def __init__(self, *, name, description, inputs, execute, source):
         super().__init__()
