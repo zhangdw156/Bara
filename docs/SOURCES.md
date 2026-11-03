@@ -57,7 +57,9 @@ not included. Semantic generalization beyond the documented recognizers is untes
 ## ParetoSaddler
 
 [Paper](https://arxiv.org/abs/2611.02079), Appendix J, Tables 15–17;
-[official optimization code](https://github.com/microsoft/AutoSaddler/tree/feat/paretosaddler).
+[shared optimizer repository](https://github.com/microsoft/AutoSaddler).
+The Pareto-specific feature branch linked by the project page was not publicly
+available at the audit date; no code from that branch is claimed here.
 
 I-23 and I-22 come from **different searches**. They are separate selectable agents.
 The tables describe changed files and behaviors; they do not supply the complete
