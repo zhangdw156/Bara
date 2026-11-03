@@ -15,5 +15,4 @@ The original controller bodies are retained; the original research runner is omi
 The shared evaluation CLI adapts three ARE 1.2.0 benchmark modules. Their original
 MIT license, source hashes and modifications are recorded in src/bara/benchmark/.
 
-Research names identify cited papers and do not imply endorsement or reproduction
-of the authors' complete final artifacts or reported benchmark scores.
+Research method names refer to the papers cited in [docs/SOURCES.md](docs/SOURCES.md).

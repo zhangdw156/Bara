@@ -5,7 +5,7 @@ ARE 1.2.0 benchmark modules listed in `source.json`. The original license is in
 this directory. ARE's default builders, scenario tools, judge, user simulator,
 trace export, and full-protocol phase definitions are retained.
 
-Bara selects a separate ARE source directory and interpreter before import.
-There is no variant factory or entry-point registry. The evaluator adds source
-content provenance, automatic output directories, JSONL input handling, a thread
-default, and failure exit statuses. Agent logic remains inside each source tree.
+Bara selects the requested ARE source directory and its interpreter before import.
+The evaluator adds source content provenance, automatic output directories, JSONL
+input handling, a thread default and failure exit statuses. Agent logic lives in
+each source tree.

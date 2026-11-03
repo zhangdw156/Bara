@@ -2,9 +2,10 @@
 
 [Paper](https://arxiv.org/abs/2611.02079) · [Source manifest](SOURCE.json)
 
-This directory is an independent, installable ARE source tree. Its native ReAct implementation is in `are/simulation/agents/default_agent/`. It imports no sibling implementation or collection package.
+This directory contains an installable ARE project, with its ReAct implementation in
+`are/simulation/agents/default_agent/`.
 
-Use the unchanged native factory:
+Use the native factory:
 
 ```python
 from are.simulation.agents.default_agent.agent_factory import are_simulation_react_json_agent
@@ -15,4 +16,5 @@ agent.tools = scenario_tools
 
 From this directory, `uv sync` creates its own `.venv`. From the collection root, `uv run bara smoke paretosaddler-i23` checks the same source with scripted model responses. `uv run bara benchmark paretosaddler-i23 --help` opens the evaluation options.
 
-This is a non-faithful research implementation, not the authors' verified final agent. No published score is claimed. See [CHANGES.md](CHANGES.md) for implemented behavior and limitations.
+This research reimplementation draws on the linked paper and public sources.
+[CHANGES.md](CHANGES.md) documents the implemented components and differences from the paper.

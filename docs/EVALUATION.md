@@ -10,8 +10,7 @@ uv run bara benchmark autosaddler --help
 ```
 
 `bara` selects the named source directory and runs its native ARE code in that
-directory's `.venv`. The environment is synchronized automatically. You do not
-need to activate it, install an agent plugin, or register a factory. Dataset and
+directory's `.venv`. The environment is synchronized automatically. Dataset and
 output paths remain relative to the directory where you invoke the command.
 
 ## Read the official dataset online
@@ -138,8 +137,8 @@ model calls, including the additional app agents in the Agent2Agent phase.
 Without `--output_dir`, each invocation creates `runs/<source>/<timestamp>/`.
 Results include native traces, `benchmark_stats.json`, and `agent_source.json`
 recording the selected method, paper, upstream provenance and actual source digest.
-An output directory already owned by a different source is rejected. This records
-edited research sources without restricting them to a particular commit.
+Each output directory belongs to one source; its digest identifies the code used
+for that evaluation, including local edits.
 
 For offline judging of native exported traces:
 
@@ -148,7 +147,6 @@ uv run bara judge autosaddler --dataset path/to/exported-traces --help
 ```
 
 Hub upload occurs only when explicitly requested with the native upload option.
-No benchmark score is claimed for any reconstruction in this collection.
 
 ## Local checks
 
@@ -160,4 +158,4 @@ uv run bara build
 
 These operate on all five source directories. Add a directory name to check just
 one. Smoke and tests use scripted responses and synthetic local scenarios, with
-no paid model calls. No GitHub Actions workflow is configured.
+no paid model calls.

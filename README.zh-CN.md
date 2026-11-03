@@ -20,7 +20,7 @@
 独立的 ARE ReAct 实现。**每个 agent 子目录就是一份可以单独安装、修改和使用的 ARE 源码。**
 
 > [!NOTE]
-> **不保证保真。** 这是面向 GAIA2 / RSI 研究的实用源码合集，不声称拿到了作者完整的最终进化产物，也不继承论文成绩。
+> **研究性重实现，不保证保真。** 各目录的 `CHANGES.md` 记录具体实现范围和与论文的差异。
 
 <a id="collection"></a>
 
@@ -48,8 +48,8 @@ Bara/
 ```
 
 每份目录都有自己的 `are/`、`pyproject.toml`、`uv.lock`、说明、来源记录和测试。
-agent 改动在各自的 `are/simulation/agents/default_agent/` 中；`bara` 只负责命令行与评测。
-单个 agent 目录可以独立复制、安装，运行时不依赖合集或其他 agent 目录。
+agent 改动在各自的 `are/simulation/agents/default_agent/` 中；`src/bara/` 提供命令行和评测工具。
+每个 agent 目录都可以单独复制、安装和使用。
 [供已有评测程序使用 →](docs/USAGE.md)
 
 <a id="quick-start"></a>
@@ -143,7 +143,6 @@ agent.tools = scenario_tools
 <summary><b>本地验证与贡献</b></summary>
 
 测试覆盖原生工具执行、待执行模型请求恢复、各方法的特定行为，以及合成数据集评测。
-没有进行完整 GAIA2 或真实模型实验。检查在本地运行，仓库不配置自动工作流。
 [验证范围 →](docs/VALIDATION.md)
 
 新方法同样放入独立 ARE 源码目录，附上论文、来源和改动说明，保持原生工厂接口。

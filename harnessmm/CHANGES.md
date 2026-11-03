@@ -15,23 +15,21 @@ The native model step uses the public non-stall configuration (`require_stall=Fa
 three-follow-up limit. Conditions are literal substrings of actual public tool
 observations. New tasks, user messages, notifications, errors, or unmatched receipts
 return control to the model. The same native executor runs the resulting action.
-The controller does not claim semantic proof that a task is complete.
 
 The native model step stores controller state in `BaseAgent.custom_state` and keeps a
-pending model request replayable. It keeps the original provider object and native action executor. It does not import the upstream research runner or read benchmark answers.
+pending model request replayable. It uses the original provider object and native
+action executor.
 
-This is an earlier public deterministic component. It does **not** contain the
-later typed bank, one-token selector, fused context-v16, or the complete frozen
-configuration behind the 43.96% / 639.64k-token GAIA2 result. Those results are not
-assigned to this port.
+The port covers the earlier public deterministic controller. Later components
+(the typed bank, one-token selector, fused context-v16 and frozen configuration)
+are outside its scope.
 
 ## Native source layout
 
 The full `are/` Python package is included locally. The standard factory remains
 `are.simulation.agents.default_agent.agent_factory.are_simulation_react_json_agent`.
-Research behavior is implemented in this directory, without importing the
-collection CLI or a sibling agent. `SOURCE.json` records upstream provenance.
+Research behavior lives in `are/simulation/agents/default_agent/`.
+`SOURCE.json` records upstream provenance.
 
-All directories include native pending-step persistence and success-aware terminal
-tool handling. These common runtime fixes are separate from the paper-inspired
-changes. They retain the native JSON executor, log memory and model-call contract.
+Common runtime updates cover pending-step persistence and success-aware terminal
+tool handling, using the native JSON executor, log memory and model-call contract.

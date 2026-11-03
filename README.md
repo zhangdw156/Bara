@@ -21,7 +21,7 @@ inspired by recent recursive self-improvement research. **Each agent directory
 contains its own ARE source**, native import paths and project environment.
 
 > [!NOTE]
-> **Research implementations, without a fidelity guarantee.** The collection is a practical starting point for studying RSI on GAIA2. It does not claim to recover the authors' complete final agents or reproduce their scores.
+> **Research reimplementations; exact fidelity is not guaranteed.** Each directory's `CHANGES.md` describes implementation coverage and differences from the paper.
 
 <a id="collection"></a>
 
@@ -70,8 +70,8 @@ Bara/
 
 Every agent directory contains `are/`, `pyproject.toml`, `uv.lock`, `README.md`,
 `CHANGES.md`, and tests. It can be copied and installed independently. Research
-code lives in its own `are/simulation/agents/default_agent/`; the `bara` package
-contains no agent implementation. [Use a source with an existing evaluator →](docs/USAGE.md)
+code lives in its own `are/simulation/agents/default_agent/`; `src/bara/` provides
+the collection CLI and evaluation tools. [Use a source with an existing evaluator →](docs/USAGE.md)
 
 <a id="quick-start"></a>
 
@@ -168,7 +168,6 @@ ports from appendix reconstructions. [Source coverage →](docs/SOURCES.md)
 
 Tests exercise native execution, pending-request recovery, method-specific behavior,
 and synthetic dataset evaluation. [Validation scope →](docs/VALIDATION.md)
-No live benchmark result is claimed. Checks are local; no automatic workflow is configured.
 
 Add a new implementation as an independent ARE source directory with a paper URL,
 source manifest and documented differences. Keep the native factory interface.
