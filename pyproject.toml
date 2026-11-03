@@ -12,8 +12,8 @@ license = "MIT"
 authors = [{name = "zhangdw156"}]
 dependencies = ["meta-agents-research-environments==1.2.0"]
 
-[project.optional-dependencies]
-dev = ["pytest>=8.3,<9", "ruff>=0.11,<1", "build>=1.2,<2"]
+[dependency-groups]
+dev = ["pytest>=8.3,<9", "ruff>=0.11,<1"]
 
 [project.scripts]
 better-are-react-agent = "better_are_react_agent.cli:main"

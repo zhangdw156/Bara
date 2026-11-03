@@ -89,12 +89,12 @@ set; environment-tool extensions described in the papers are not bundled.
 
 ## 🚀 Quick start
 
-From the repository root, install into a dedicated environment and run the offline check:
+From the repository root, install the project and run the offline check:
+`uv sync` creates `.venv/` and installs the project and development tools.
 
 ```sh
-uv venv .uv-venv/better-are-react-agent --python 3.12
-uv pip install --python .uv-venv/better-are-react-agent/bin/python -e .
-.uv-venv/better-are-react-agent/bin/better-are-react-agent smoke
+uv sync
+uv run better-are-react-agent smoke
 ```
 The check executes real ARE steps and tools with scripted responses. It needs no
 API key or benchmark download and does not measure GAIA2 success.
@@ -163,10 +163,9 @@ notification invalidation, and controller-state recovery. CI runs on **Python
 <summary><b>Run the development checks</b></summary>
 
 ```sh
-uv pip install --python .uv-venv/better-are-react-agent/bin/python -e '.[dev]'
-.uv-venv/better-are-react-agent/bin/python -m pytest
-.uv-venv/better-are-react-agent/bin/ruff check src tests
-.uv-venv/better-are-react-agent/bin/python -m build
+uv run pytest
+uv run ruff check src tests
+uv build
 ```
 
 When adding a variant, record its paper, implementation choices, and differences

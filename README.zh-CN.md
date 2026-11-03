@@ -87,12 +87,12 @@
 
 ## 🚀 快速开始
 
-在仓库目录下创建独立环境，安装并运行离线检查：
+在仓库目录下安装项目并运行离线检查。`uv sync` 会自动创建 `.venv/`，
+并安装项目及开发工具：
 
 ```sh
-uv venv .uv-venv/better-are-react-agent --python 3.12
-uv pip install --python .uv-venv/better-are-react-agent/bin/python -e .
-.uv-venv/better-are-react-agent/bin/better-are-react-agent smoke
+uv sync
+uv run better-are-react-agent smoke
 ```
 检查使用预设回复，实际执行 ARE 原生步骤和工具。无需 API 密钥或下载 benchmark，
 也不代表真实模型的 GAIA2 成绩。
@@ -155,10 +155,9 @@ agent = autosaddler_appendix(llm_engine, base_agent_config)
 <summary><b>运行开发检查</b></summary>
 
 ```sh
-uv pip install --python .uv-venv/better-are-react-agent/bin/python -e '.[dev]'
-.uv-venv/better-are-react-agent/bin/python -m pytest
-.uv-venv/better-are-react-agent/bin/ruff check src tests
-.uv-venv/better-are-react-agent/bin/python -m build
+uv run pytest
+uv run ruff check src tests
+uv build
 ```
 
 添加新版本时，请记录论文来源、实现选择和差异，并区分公开组件移植与重建版本。
