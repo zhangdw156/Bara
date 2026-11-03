@@ -1,0 +1,19 @@
+name: native-agent-checks
+on: [push, pull_request]
+jobs:
+  native:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.12', '3.13']
+    env:
+      LITELLM_LOCAL_MODEL_COST_MAP: 'True'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv venv .uv-venv/better-are-react-agent --python '${{ matrix.python }}'
+      - run: uv pip install --python .uv-venv/better-are-react-agent/bin/python -e '.[dev]'
+      - run: .uv-venv/better-are-react-agent/bin/ruff check src tests
+      - run: .uv-venv/better-are-react-agent/bin/python -m pytest -q
+      - run: .uv-venv/better-are-react-agent/bin/better-are-react-agent smoke
+      - run: .uv-venv/better-are-react-agent/bin/python -m build

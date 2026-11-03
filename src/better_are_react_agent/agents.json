@@ -1,0 +1,108 @@
+{
+  "baseline": {
+    "id": "baseline",
+    "title": "Native ARE ReAct",
+    "factory": "better_are_react_agent.factories:baseline",
+    "fidelity": "native-baseline",
+    "policy": null,
+    "sources": [
+      "https://github.com/facebookresearch/meta-agents-research-environments"
+    ],
+    "implemented": [],
+    "limitations": [
+      "Unmodified native ARE factory."
+    ],
+    "published_score_reproduced": false,
+    "environment_tools": "unchanged"
+  },
+  "autosaddler-appendix": {
+    "id": "autosaddler-appendix",
+    "title": "AutoSaddler agent-side reconstruction",
+    "factory": "better_are_react_agent.factories:autosaddler_appendix",
+    "fidelity": "appendix-reconstruction",
+    "policy": "autosaddler.md",
+    "sources": [
+      "https://arxiv.org/html/2608.23041#A14.T16"
+    ],
+    "implemented": [
+      "Communication, ambiguity, ordering, email, path, and monitoring guidance."
+    ],
+    "limitations": [
+      "No final author snapshot. No new or modified environment tools. No automatic inter-turn polling or filesystem resolver. Email hook represented as policy, not an identical executor hook."
+    ],
+    "published_score_reproduced": false,
+    "environment_tools": "unchanged"
+  },
+  "activesaddler-appendix": {
+    "id": "activesaddler-appendix",
+    "title": "ActiveSaddler case-study reconstruction",
+    "factory": "better_are_react_agent.factories:activesaddler_appendix",
+    "fidelity": "appendix-reconstruction",
+    "policy": "activesaddler.md",
+    "sources": [
+      "https://arxiv.org/html/2610.00906#A7"
+    ],
+    "implemented": [
+      "Multiline literal-signature guard and pre-creation calendar ambiguity guard, with case-study guidance."
+    ],
+    "limitations": [
+      "Only two published repair cases. Guard recognizers cover explicit literal signatures and native public calendar receipts; no hidden task IDs. Full evolved harness and broad semantic trigger logic are unavailable."
+    ],
+    "published_score_reproduced": false,
+    "environment_tools": "unchanged"
+  },
+  "paretosaddler-i23-appendix": {
+    "id": "paretosaddler-i23-appendix",
+    "title": "ParetoSaddler I-23 agent-side reconstruction",
+    "factory": "better_are_react_agent.factories:paretosaddler_i23_appendix",
+    "fidelity": "appendix-reconstruction",
+    "policy": "paretosaddler_i23.md",
+    "sources": [
+      "https://arxiv.org/html/2611.02079#A10.T16"
+    ],
+    "implemented": [
+      "Reconstructed agent instructions for target resolution, ordering, monitoring, and completion."
+    ],
+    "limitations": [
+      "No frozen I-23 source. Tool extensions, exact pre-tool guards, and termination-code changes are not reconstructed. These are policy-level counterparts."
+    ],
+    "published_score_reproduced": false,
+    "environment_tools": "unchanged"
+  },
+  "paretosaddler-i22-appendix": {
+    "id": "paretosaddler-i22-appendix",
+    "title": "ParetoSaddler I-22 agent-side reconstruction",
+    "factory": "better_are_react_agent.factories:paretosaddler_i22_appendix",
+    "fidelity": "appendix-reconstruction",
+    "policy": "paretosaddler_i22.md",
+    "sources": [
+      "https://arxiv.org/html/2611.02079#A10.T17"
+    ],
+    "implemented": [
+      "Compact-query and reminder policies; conservative terminal-text to native user-interface action conversion."
+    ],
+    "limitations": [
+      "No frozen I-22 source. Environment tool extensions are not present. Terminal conversion is restricted to explicit Final answer text after tool activity. The unimplemented research monitoring tool is not fabricated."
+    ],
+    "published_score_reproduced": false,
+    "environment_tools": "unchanged"
+  },
+  "harnessmm-public-continuation": {
+    "id": "harnessmm-public-continuation",
+    "title": "HarnessMM public deterministic continuation",
+    "factory": "better_are_react_agent.factories:harnessmm_public_continuation",
+    "fidelity": "public-component-port",
+    "policy": null,
+    "sources": [
+      "https://github.com/YuhuaJiang2002/HarnessMM/blob/e77dfb5b768831be80c7a97855450a65404d01cb/harnessmm/harness/gaia2_jev.py"
+    ],
+    "implemented": [
+      "Published PublicContinuation controller and plan instruction; non-stall mode, maximum three follow-ups. Native engine adapter with checkpointable state."
+    ],
+    "limitations": [
+      "Historical public component, not the frozen 480-task agent. No one-token selector, typed later bank, context-v16, or combined-paper-score claim."
+    ],
+    "published_score_reproduced": false,
+    "environment_tools": "unchanged"
+  }
+}
